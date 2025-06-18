@@ -9,38 +9,8 @@ script = ExtResource("1_760ub")
 
 [node name="torso" type="Node2D" parent="body"]
 
-[node name="ColorRect" type="ColorRect" parent="body/torso"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -72.5
-offset_top = -2.0
-offset_right = 72.5
-offset_bottom = 356.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="head" type="Node2D" parent="body"]
 position = Vector2(-24, -130)
-
-[node name="ColorRect" type="ColorRect" parent="body/head"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -57.5
-offset_top = -65.0
-offset_right = 57.5
-offset_bottom = 65.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
 [node name="upper_arm1" type="Node2D" parent="body"]
 position = Vector2(-88, 110)
