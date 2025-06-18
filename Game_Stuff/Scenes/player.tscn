@@ -10,5 +10,4 @@
 shape = SubResource("RectangleShape2D_gmwd0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(912, -593)
 texture = ExtResource("1_4iox1")
