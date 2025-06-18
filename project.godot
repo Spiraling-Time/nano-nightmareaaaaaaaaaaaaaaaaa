@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="Nano-Nightmare"
+run/main_scene="uid://dxerlijo04el8"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://Game_Stuff/Assets/icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
