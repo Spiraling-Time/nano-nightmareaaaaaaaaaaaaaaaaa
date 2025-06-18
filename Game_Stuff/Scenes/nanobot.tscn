@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnec5d5cq7ssg"]
+
+[ext_resource type="Texture2D" uid="uid://d0yse5vjgghv8" path="res://Game_Stuff/Assets/Nano Nightmare art.png" id="1_4o2e6"]
+
+[node name="Nanobot" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4o2e6")
