@@ -13,10 +13,18 @@ var speed = 100
 
 var mode = "AWAY"
 
+var spin_dir = 0 #0 = -, 1 = +
+
 func _ready() -> void:
+	spin_dir = randi_range(0,1)
 	move_randomly()
 
 func _physics_process(delta: float) -> void:
+	if spin_dir == 0: rotation -= 0.2
+	else: rotation += 0.2
+	if rotation > 360.0 or rotation < -360.0:
+		rotation = 0.0
+		spin_dir = randi_range(0,1)
 	if mode == "RETURN":
 		var point_towards = nano_home - global_position
 		direction = point_towards.normalized()
