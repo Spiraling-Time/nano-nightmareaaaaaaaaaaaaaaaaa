@@ -16,3 +16,6 @@ var distribution: Array = []
 func _ready() -> void:
 	#distribution.append(Vector3(torso.position, $body/torso/ColorRect.size.x/2, $body/torso/ColorRect.size.y/2))
 	pass
+
+func _process(delta: float) -> void:
+	position.x += randi_range(50,-50)

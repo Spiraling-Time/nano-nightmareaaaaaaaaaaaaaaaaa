@@ -8,9 +8,10 @@ script = ExtResource("1_760ub")
 [node name="body" type="Node2D" parent="."]
 
 [node name="torso" type="Node2D" parent="body"]
+position = Vector2(-1, 111)
 
 [node name="head" type="Node2D" parent="body"]
-position = Vector2(-24, -130)
+position = Vector2(-24, -194)
 
 [node name="upper_arm1" type="Node2D" parent="body"]
 position = Vector2(-88, 110)
