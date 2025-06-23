@@ -10,37 +10,37 @@ script = ExtResource("1_760ub")
 [node name="torso" type="Node2D" parent="body"]
 position = Vector2(25, 232)
 
-[node name="head" type="Node2D" parent="body"]
-position = Vector2(24, -65)
+[node name="head" type="Node2D" parent="body/torso"]
+position = Vector2(-1, -297)
 
-[node name="upper_arm1" type="Node2D" parent="body"]
-position = Vector2(-164, 84)
+[node name="upper_arm1" type="Node2D" parent="body/torso"]
+position = Vector2(-189, -148)
 
-[node name="lower_arm1" type="Node2D" parent="body/upper_arm1"]
+[node name="lower_arm1" type="Node2D" parent="body/torso/upper_arm1"]
 position = Vector2(-200, 26)
 
-[node name="upper_arm2" type="Node2D" parent="body"]
-position = Vector2(164, 84)
+[node name="upper_arm2" type="Node2D" parent="body/torso"]
+position = Vector2(139, -148)
 
-[node name="lower_arm2" type="Node2D" parent="body/upper_arm2"]
+[node name="lower_arm2" type="Node2D" parent="body/torso/upper_arm2"]
 position = Vector2(200, 26)
 
-[node name="upper_leg1" type="Node2D" parent="body"]
-position = Vector2(-84, 492)
+[node name="upper_leg1" type="Node2D" parent="body/torso"]
+position = Vector2(-109, 260)
 
-[node name="lower_leg1" type="Node2D" parent="body/upper_leg1"]
+[node name="lower_leg1" type="Node2D" parent="body/torso/upper_leg1"]
 position = Vector2(-94, 168)
 
-[node name="standing" type="RayCast2D" parent="body/upper_leg1/lower_leg1"]
-position = Vector2(50, 35)
+[node name="standing" type="RayCast2D" parent="body/torso/upper_leg1/lower_leg1"]
+position = Vector2(50, 39)
 target_position = Vector2(-100, 0)
 
-[node name="upper_leg2" type="Node2D" parent="body"]
-position = Vector2(164, 492)
+[node name="upper_leg2" type="Node2D" parent="body/torso"]
+position = Vector2(139, 260)
 
-[node name="lower_leg2" type="Node2D" parent="body/upper_leg2"]
+[node name="lower_leg2" type="Node2D" parent="body/torso/upper_leg2"]
 position = Vector2(-32, 174)
 
-[node name="standing" type="RayCast2D" parent="body/upper_leg2/lower_leg2"]
-position = Vector2(-50, 35)
+[node name="standing" type="RayCast2D" parent="body/torso/upper_leg2/lower_leg2"]
+position = Vector2(-50, 39)
 target_position = Vector2(100, 0)
