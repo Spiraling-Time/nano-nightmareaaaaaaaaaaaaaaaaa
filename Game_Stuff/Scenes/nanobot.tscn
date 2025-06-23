@@ -8,6 +8,7 @@ radius = 5.09902
 
 [node name="Nanobot" type="CharacterBody2D"]
 collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_g41sc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

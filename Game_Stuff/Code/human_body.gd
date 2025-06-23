@@ -7,6 +7,8 @@ var debugging: bool = false
 
 var mode = "IDLE"
 
+var fall_speed = 1
+
 @onready var torso = $body/torso
 @onready var head = $body/head
 @onready var upper_arm1 = $body/upper_arm1
@@ -37,5 +39,12 @@ func _process(delta: float) -> void:
 	#position.x = randi_range(0,500)
 	#position.x += speed
 	#if position.x >1000 or position.x < -100: speed = speed * -1
-#	if mode == "IDLE":
-	pass
+	if !$body/upper_leg1/lower_leg1/standing.is_colliding() and !$body/upper_leg2/lower_leg2/standing.is_colliding():
+		position.y += fall_speed
+		if !$body/upper_leg1/lower_leg1/standing.is_colliding() and !$body/upper_leg2/lower_leg2/standing.is_colliding():
+			fall_speed = fall_speed*1.1
+		else:
+			position.y -= fall_speed
+			fall_speed = 1
+	#if mode == "IDLE":
+		
