@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var nano_type
+#var nano_type
 var nano_home
 var nano_size_x
 var nano_size_y
@@ -23,17 +23,18 @@ var randiii
 @onready var contact = $Contact
 
 func _ready() -> void:
-	if nano_type == "TORSO": nano_thingIcantthinkofname = $"../human_body/body/torso"
-	elif nano_type == "HEAD": nano_thingIcantthinkofname = $"../human_body/body/head"
-	elif nano_type == "UPPER_ARM1": nano_thingIcantthinkofname = $"../human_body/body/upper_arm1"
-	elif nano_type == "LOWER_ARM1": nano_thingIcantthinkofname = $"../human_body/body/lower_arm1"
-	elif nano_type == "UPPER_ARM2": nano_thingIcantthinkofname = $"../human_body/body/upper_arm2"
-	elif nano_type == "LOWER_ARM2": nano_thingIcantthinkofname = $"../human_body/body/lower_arm2"
-	elif nano_type == "UPPER_LEG1": nano_thingIcantthinkofname = $"../human_body/body/upper_leg1"
-	elif nano_type == "LOWER_LEG1": nano_thingIcantthinkofname = $"../human_body/body/lower_leg1"
-	elif nano_type == "UPPER_LEG2": nano_thingIcantthinkofname = $"../human_body/body/upper_leg2"
-	elif nano_type == "LOWER_LEG2": nano_thingIcantthinkofname = $"../human_body/body/lower_leg2"
-
+	#if nano_type == "TORSO": nano_thingIcantthinkofname = $"../human_body/body/torso"
+	#elif nano_type == "HEAD": nano_thingIcantthinkofname = $"../human_body/body/head"
+	#elif nano_type == "UPPER_ARM1": nano_thingIcantthinkofname = $"../human_body/body/upper_arm1"
+	#elif nano_type == "LOWER_ARM1": nano_thingIcantthinkofname = $"../human_body/body/lower_arm1"
+	#elif nano_type == "UPPER_ARM2": nano_thingIcantthinkofname = $"../human_body/body/upper_arm2"
+	#elif nano_type == "LOWER_ARM2": nano_thingIcantthinkofname = $"../human_body/body/lower_arm2"
+	#elif nano_type == "UPPER_LEG1": nano_thingIcantthinkofname = $"../human_body/body/upper_leg1"
+	#elif nano_type == "LOWER_LEG1": nano_thingIcantthinkofname = $"../human_body/body/lower_leg1"
+	#elif nano_type == "UPPER_LEG2": nano_thingIcantthinkofname = $"../human_body/body/upper_leg2"
+	#elif nano_type == "LOWER_LEG2": nano_thingIcantthinkofname = $"../human_body/body/lower_leg2"
+	nano_thingIcantthinkofname = get_parent()
+	#print(nano_thingIcantthinkofname)
 	spin_dir = randi_range(0,1)
 	randiii = randi_range(1,4)
 	if randiii == 1:
@@ -71,6 +72,8 @@ func _ready() -> void:
 	
 	$Sprite2D.texture = nano_illusion
 	
+	position+= Vector2(randi_range(-100,100),randi_range(-100,100))
+	
 	$Timer.start()
 	
 func _physics_process(delta: float) -> void:
@@ -89,13 +92,12 @@ func _physics_process(delta: float) -> void:
 		direction = point_towards.normalized()
 
 	#if direction == Vector2.ZERO: move_randomly()
-	
 	velocity = direction * speed
 
 	
 	move_and_slide()
 	
-	if position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
+	if global_position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or global_position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or global_position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or global_position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
 		mode = "RETURN"
 	else: #if position.distance_to(nano_thingIcantthinkofname.global_position) <= 101: #MAKE THIS ELSE IF THERE ARE PROBLEMS
 		mode = "AWAY"

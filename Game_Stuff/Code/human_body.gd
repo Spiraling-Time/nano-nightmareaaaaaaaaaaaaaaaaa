@@ -1,6 +1,10 @@
 extends Node2D
 
 
+var speed = 10
+
+var debugging: bool = false
+
 @onready var torso = $body/torso
 @onready var head = $body/head
 @onready var upper_arm1 = $body/upper_arm1
@@ -14,9 +18,21 @@ extends Node2D
 var distribution: Array = []
 
 func _ready() -> void:
-	#distribution.append(Vector3(torso.position, $body/torso/ColorRect.size.x/2, $body/torso/ColorRect.size.y/2))
-	pass
+	if debugging:
+		$body/torso/Sprite2D.visible = true
+		$body/head/Sprite2D2.visible = true
+		$body/upper_arm1/Sprite2D3.visible = true
+		$body/lower_arm1/Sprite2D4.visible = true
+		$body/upper_arm2/Sprite2D5.visible = true
+		$body/lower_arm2/Sprite2D6.visible = true
+		$body/upper_leg1/Sprite2D7.visible = true
+		$body/lower_leg1/Sprite2D8.visible = true
+		$body/upper_leg2/Sprite2D9.visible = true
+		$body/lower_leg2/Sprite2D10.visible = true
+
 
 func _process(delta: float) -> void:
-	#position += Vector2(randi_range(10,-10),randi_range(0,-0))
+	position.x = randi_range(0,500)
+	#position.x += speed
+	#if position.x >1000 or position.x < -100: speed = speed * -1
 	pass
