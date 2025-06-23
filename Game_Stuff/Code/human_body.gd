@@ -18,4 +18,5 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	position.x += randi_range(50,-50)
+	#position += Vector2(randi_range(10,-10),randi_range(0,-0))
+	pass

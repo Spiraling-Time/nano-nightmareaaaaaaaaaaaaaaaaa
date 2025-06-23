@@ -19,7 +19,6 @@ var nano_illusion
 
 var randiii
 
-var touching: bool = false
 
 @onready var contact = $Contact
 
@@ -72,13 +71,9 @@ func _ready() -> void:
 	
 	$Sprite2D.texture = nano_illusion
 	
+	$Timer.start()
+	
 func _physics_process(delta: float) -> void:
-	#if $"../MAP" in contact.get_overlapping_bodies(): touching = true
-	#if touching:
-		#for bodies in contact.get_overlapping_bodies():
-			#if bodies != self:
-				#if bodies.has_method("contacted"):
-					#bodies.contacted()
 
 	
 	
@@ -93,20 +88,19 @@ func _physics_process(delta: float) -> void:
 		point_towards = nano_thingIcantthinkofname.global_position - global_position
 		direction = point_towards.normalized()
 
+	#if direction == Vector2.ZERO: move_randomly()
 	
 	velocity = direction * speed
-	
-	if !touching: velocity.y += 10
-	#touching = false
+
 	
 	move_and_slide()
 	
-	if nano_thingIcantthinkofname.global_position:
-		if position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
-			mode = "RETURN"
-		if position.distance_to(nano_thingIcantthinkofname.global_position) < 10: #MAKE THIS LARGER WHILE MOVING
-			mode = "AWAY"
-			move_randomly()
+	if position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
+		mode = "RETURN"
+	else: #if position.distance_to(nano_thingIcantthinkofname.global_position) <= 101: #MAKE THIS ELSE IF THERE ARE PROBLEMS
+		mode = "AWAY"
+		$Timer.start()
+		move_randomly()
 		
 	#print(mode)
 
@@ -131,11 +125,7 @@ func move_randomly():
 	if decide_direction == 8:
 		direction = Vector2(0,1)
 
-			
-			
 func _on_timer_timeout() -> void:
 	if mode == "AWAY":
+		$Timer.start()
 		move_randomly()
-
-func contacted():
-	touching = true
