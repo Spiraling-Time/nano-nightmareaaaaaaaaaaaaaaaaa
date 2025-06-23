@@ -37,25 +37,46 @@ position = Vector2(536, -256)
 [node name="human_body" parent="." instance=ExtResource("2_th3ow")]
 position = Vector2(524, -388)
 
+[node name="torso" parent="human_body/body" index="0"]
+position = Vector2(25, 232)
+
 [node name="Sprite2D" type="Sprite2D" parent="human_body/body/torso" index="0"]
 visible = false
 texture = ExtResource("1_oeug3")
+
+[node name="head" parent="human_body/body" index="1"]
+position = Vector2(24, -65)
 
 [node name="Sprite2D2" type="Sprite2D" parent="human_body/body/head" index="0"]
 visible = false
 texture = ExtResource("1_oeug3")
 
+[node name="upper_arm1" parent="human_body/body" index="2"]
+position = Vector2(-164, 84)
+
 [node name="Sprite2D3" type="Sprite2D" parent="human_body/body/upper_arm1" index="0"]
 visible = false
 texture = ExtResource("1_oeug3")
+
+[node name="upper_arm2" parent="human_body/body" index="3"]
+position = Vector2(164, 84)
 
 [node name="Sprite2D5" type="Sprite2D" parent="human_body/body/upper_arm2" index="0"]
 visible = false
 texture = ExtResource("1_oeug3")
 
+[node name="lower_arm2" parent="human_body/body/upper_arm2" index="1"]
+position = Vector2(200, 26)
+
+[node name="upper_leg1" parent="human_body/body" index="4"]
+position = Vector2(-84, 492)
+
 [node name="Sprite2D7" type="Sprite2D" parent="human_body/body/upper_leg1" index="0"]
 visible = false
 texture = ExtResource("1_oeug3")
+
+[node name="upper_leg2" parent="human_body/body" index="5"]
+position = Vector2(164, 492)
 
 [node name="Sprite2D9" type="Sprite2D" parent="human_body/body/upper_leg2" index="0"]
 visible = false

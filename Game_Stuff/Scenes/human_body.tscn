@@ -8,33 +8,31 @@ script = ExtResource("1_760ub")
 [node name="body" type="Node2D" parent="."]
 
 [node name="torso" type="Node2D" parent="body"]
-position = Vector2(-1, 111)
+position = Vector2(25, 232)
 
 [node name="head" type="Node2D" parent="body"]
-position = Vector2(-24, -194)
+position = Vector2(24, -65)
 
 [node name="upper_arm1" type="Node2D" parent="body"]
-position = Vector2(-88, 110)
+position = Vector2(-164, 84)
 
-[node name="lower_arm1" type="Node2D" parent="body"]
-position = Vector2(-288, 136)
+[node name="lower_arm1" type="Node2D" parent="body/upper_arm1"]
+position = Vector2(-200, 26)
 
 [node name="upper_arm2" type="Node2D" parent="body"]
-position = Vector2(152, 110)
+position = Vector2(164, 84)
 
-[node name="lower_arm2" type="Node2D" parent="body"]
-position = Vector2(-50, 234)
+[node name="lower_arm2" type="Node2D" parent="body/upper_arm2"]
+position = Vector2(200, 26)
 
 [node name="upper_leg1" type="Node2D" parent="body"]
-position = Vector2(-118, 448)
+position = Vector2(-84, 492)
 
-[node name="lower_leg1" type="Node2D" parent="body"]
-position = Vector2(-212, 616)
+[node name="lower_leg1" type="Node2D" parent="body/upper_leg1"]
+position = Vector2(-94, 168)
 
 [node name="upper_leg2" type="Node2D" parent="body"]
-position = Vector2(120, 442)
+position = Vector2(164, 492)
 
-[node name="lower_leg2" type="Node2D" parent="body"]
-position = Vector2(88, 616)
-
-[node name="joints" type="Node2D" parent="."]
+[node name="lower_leg2" type="Node2D" parent="body/upper_leg2"]
+position = Vector2(-32, 174)

@@ -42,7 +42,7 @@ func spawn_bots(count: int):
 			new_bot.nano_size_x = 150
 			new_bot.nano_size_y = 40
 			#new_bot.position = $human_body/body/lower_arm1.global_position + Vector2(randi_range(-10,10),randi_range(-10,10))
-			$human_body/body/lower_arm1.add_child(new_bot)
+			$human_body/body/upper_arm1/lower_arm1.add_child(new_bot)
 		elif number_of_bots <= 550:
 			#new_bot.nano_type = "UPPER_ARM2"
 			new_bot.nano_size_x = 150
@@ -54,7 +54,7 @@ func spawn_bots(count: int):
 			new_bot.nano_size_x = 150
 			new_bot.nano_size_y = 40
 			#new_bot.position = $human_body/body/lower_arm2.global_position + Vector2(randi_range(-10,10),randi_range(-10,10))
-			$human_body/body/lower_arm2.add_child(new_bot)
+			$human_body/body/upper_arm2/lower_arm2.add_child(new_bot)
 		elif number_of_bots <= 650:
 			#new_bot.nano_type = "UPPER_LEG1"
 			new_bot.nano_size_x = 100
@@ -66,7 +66,7 @@ func spawn_bots(count: int):
 			new_bot.nano_size_x = 100
 			new_bot.nano_size_y = 40
 			#new_bot.position = $human_body/body/lower_leg1.global_position + Vector2(randi_range(-10,10),randi_range(-10,10))
-			$human_body/body/lower_leg1.add_child(new_bot)
+			$human_body/body/upper_leg1/lower_leg1.add_child(new_bot)
 		elif number_of_bots <= 750:
 			#new_bot.nano_type = "UPPER_LEG2"
 			new_bot.nano_size_x = 100
@@ -78,6 +78,6 @@ func spawn_bots(count: int):
 			new_bot.nano_size_x = 100
 			new_bot.nano_size_y = 40
 			#new_bot.position = $human_body/body/lower_leg2.global_position + Vector2(randi_range(-10,10),randi_range(-10,10))
-			$human_body/body/lower_leg2.add_child(new_bot)
+			$human_body/body/upper_leg2/lower_leg2.add_child(new_bot)
 		
 		#else: new_bot.queue_free()

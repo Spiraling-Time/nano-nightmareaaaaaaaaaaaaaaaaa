@@ -99,7 +99,7 @@ func _physics_process(delta: float) -> void:
 	
 	if global_position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or global_position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or global_position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or global_position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
 		mode = "RETURN"
-	else: #if position.distance_to(nano_thingIcantthinkofname.global_position) <= 101: #MAKE THIS ELSE IF THERE ARE PROBLEMS
+	else: # global_position.distance_to(nano_thingIcantthinkofname.global_position) <= 101: #MAKE THIS ELSE IF THERE ARE PROBLEMS
 		mode = "AWAY"
 		$Timer.start()
 		move_randomly()
