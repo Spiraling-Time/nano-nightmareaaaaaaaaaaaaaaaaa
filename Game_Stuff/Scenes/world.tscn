@@ -30,7 +30,6 @@ sources/0 = SubResource("TileSetAtlasSource_72umx")
 script = ExtResource("1_yy1qi")
 
 [node name="player" parent="." instance=ExtResource("2_yp3uo")]
-visible = false
 position = Vector2(536, -256)
 
 [node name="Camera2D" type="Camera2D" parent="player"]

@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckfp17b5mt727"]
+[gd_scene load_steps=4 format=3 uid="uid://ckfp17b5mt727"]
 
-[ext_resource type="Texture2D" uid="uid://cgijc0wr0jvt1" path="res://Game_Stuff/Assets/icon.svg" id="1_4iox1"]
+[ext_resource type="Texture2D" uid="uid://w24hscihrxbr" path="res://Game_Stuff/Assets/Robo_guy/sprite_sheet (17).png" id="1_4iox1"]
+[ext_resource type="Script" uid="uid://dbgxrk16jdwdg" path="res://Game_Stuff/Code/player.gd" id="1_xknox"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmwd0"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4iox1"]
+radius = 44.0
+height = 118.0
 
 [node name="player" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
+script = ExtResource("1_xknox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_gmwd0")
+shape = SubResource("CapsuleShape2D_4iox1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4iox1")
+vframes = 8
