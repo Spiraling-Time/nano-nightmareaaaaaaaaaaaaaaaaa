@@ -131,3 +131,7 @@ func _on_timer_timeout() -> void:
 	if mode == "AWAY":
 		$Timer.start()
 		move_randomly()
+
+func delete_self():
+	
+	queue_free()

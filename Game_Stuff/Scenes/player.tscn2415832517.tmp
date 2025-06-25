@@ -90,9 +90,3 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack1"]
 position = Vector2(113, 6.5)
 shape = SubResource("RectangleShape2D_xknox")
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(0, 57)
-scale = Vector2(10, 1)
-target_position = Vector2(0, 5)
-collision_mask = 5
