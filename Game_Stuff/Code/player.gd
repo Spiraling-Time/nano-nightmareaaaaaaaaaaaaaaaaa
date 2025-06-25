@@ -7,6 +7,7 @@ var fake_scale = 1
 var jump_height = 1000
 
 func _ready() -> void:
+	$AnimationPlayer.play("start")
 	$attack1.monitoring = false
 
 func _physics_process(delta: float) -> void:

@@ -34,6 +34,7 @@ position = Vector2(-736, -144)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 limit_bottom = 326
+position_smoothing_enabled = true
 
 [node name="human_body" parent="." instance=ExtResource("2_th3ow")]
 position = Vector2(524, -984)
