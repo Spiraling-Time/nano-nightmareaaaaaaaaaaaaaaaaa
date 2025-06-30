@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 				for bodies in $attack1.get_overlapping_bodies():
 					if bodies != self and bodies.has_method("delete_self"):
 						#$"..".max_number_of_bots -= 1
-						$"..".number_of_bots -= 1
+						# FIX THIS $"..".number_of_bots -= 1
 						bodies.delete_self()
 	
 	elif Input.get_action_strength("attack") >= 1:

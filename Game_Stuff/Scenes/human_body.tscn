@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqcy5ertujnu7"]
+[gd_scene load_steps=12 format=3 uid="uid://bqcy5ertujnu7"]
 
 [ext_resource type="Script" uid="uid://8m5lw8j507tc" path="res://Game_Stuff/Code/human_body.gd" id="1_760ub"]
+[ext_resource type="Script" uid="uid://dvivhh3k8ig77" path="res://Game_Stuff/Code/torso.gd" id="2_rnkuw"]
+[ext_resource type="Script" uid="uid://k5yjn8tcmpwk" path="res://Game_Stuff/Code/head.gd" id="3_axru4"]
+[ext_resource type="Script" uid="uid://svxvrwmsnl6" path="res://Game_Stuff/Code/upper_arm_1.gd" id="4_eyis4"]
+[ext_resource type="Script" uid="uid://twf24mlxellq" path="res://Game_Stuff/Code/lower_arm_1.gd" id="5_pk788"]
+[ext_resource type="Script" uid="uid://hqgo0gcbcb6n" path="res://Game_Stuff/Code/upper_arm_2.gd" id="6_fogle"]
+[ext_resource type="Script" uid="uid://ddnw8scnjwaib" path="res://Game_Stuff/Code/lower_arm_2.gd" id="7_60fdf"]
+[ext_resource type="Script" uid="uid://c3xflgpfyx585" path="res://Game_Stuff/Code/upper_leg_1.gd" id="8_ugck6"]
+[ext_resource type="Script" uid="uid://5dnk3h3nacac" path="res://Game_Stuff/Code/lower_leg_1.gd" id="9_objms"]
+[ext_resource type="Script" uid="uid://cpa8xecgpwde8" path="res://Game_Stuff/Code/upper_leg_2.gd" id="10_70lw7"]
+[ext_resource type="Script" uid="uid://3id12en8rkrh" path="res://Game_Stuff/Code/lower_leg_2.gd" id="11_y887g"]
 
 [node name="human_body" type="Node2D"]
 script = ExtResource("1_760ub")
@@ -9,27 +19,35 @@ script = ExtResource("1_760ub")
 
 [node name="torso" type="Node2D" parent="body"]
 position = Vector2(25, 232)
+script = ExtResource("2_rnkuw")
 
 [node name="head" type="Node2D" parent="body/torso"]
 position = Vector2(-1, -297)
+script = ExtResource("3_axru4")
 
 [node name="upper_arm1" type="Node2D" parent="body/torso"]
 position = Vector2(-189, -148)
+script = ExtResource("4_eyis4")
 
 [node name="lower_arm1" type="Node2D" parent="body/torso/upper_arm1"]
 position = Vector2(-200, 26)
+script = ExtResource("5_pk788")
 
 [node name="upper_arm2" type="Node2D" parent="body/torso"]
 position = Vector2(139, -148)
+script = ExtResource("6_fogle")
 
 [node name="lower_arm2" type="Node2D" parent="body/torso/upper_arm2"]
 position = Vector2(200, 26)
+script = ExtResource("7_60fdf")
 
 [node name="upper_leg1" type="Node2D" parent="body/torso"]
 position = Vector2(-109, 260)
+script = ExtResource("8_ugck6")
 
 [node name="lower_leg1" type="Node2D" parent="body/torso/upper_leg1"]
 position = Vector2(-94, 168)
+script = ExtResource("9_objms")
 
 [node name="standing" type="RayCast2D" parent="body/torso/upper_leg1/lower_leg1"]
 position = Vector2(50, 39)
@@ -37,9 +55,11 @@ target_position = Vector2(-100, 0)
 
 [node name="upper_leg2" type="Node2D" parent="body/torso"]
 position = Vector2(139, 260)
+script = ExtResource("10_70lw7")
 
 [node name="lower_leg2" type="Node2D" parent="body/torso/upper_leg2"]
 position = Vector2(-32, 174)
+script = ExtResource("11_y887g")
 
 [node name="standing" type="RayCast2D" parent="body/torso/upper_leg2/lower_leg2"]
 position = Vector2(-50, 39)
