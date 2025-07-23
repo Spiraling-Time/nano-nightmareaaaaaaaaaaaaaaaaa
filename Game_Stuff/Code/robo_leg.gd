@@ -2,7 +2,8 @@ extends RigidBody2D
 
 @onready var ani = $AnimationPlayer
 
-var power = 500
+var power = 20#500
+var flight_power = 300
 
 var leg_number = 0
 
@@ -21,27 +22,30 @@ func _physics_process(delta: float) -> void:
 	
 	if leg_number == 1:
 		if Input.get_action_strength("front_left") >=1:
-			
-			apply_torque_impulse(power*-1)
+			angular_velocity = -1*power
+			#apply_torque_impulse(power*-1)
 		elif Input.get_action_strength("front_right") >=1:
-			apply_torque_impulse(power)
+			angular_velocity = power
+			#apply_torque_impulse(power)
 		
 		if Input.get_action_strength("front_up") >=1:
 			ani.play("Fly")
-			linear_velocity = Vector2.UP.rotated(rotation) * power/2
+			linear_velocity = Vector2.UP.rotated(rotation) * flight_power
 		else:
 			#$"../PinJoint2D1".angular_limit_enabled = false
 			ani.play("Idle")
 			
 	elif leg_number == 2:
 		if Input.get_action_strength("back_left") >=1:
-			apply_torque_impulse(power*-1)
+			angular_velocity =-1* power
+			#apply_torque_impulse(power*-1)
 		elif Input.get_action_strength("back_right") >=1:
-			apply_torque_impulse(power)
+			angular_velocity = power
+			#apply_torque_impulse(power)
 		
 		if Input.get_action_strength("back_up") >=1:
 			ani.play("Fly")
-			linear_velocity = Vector2.UP.rotated(rotation) * power/2
+			linear_velocity = Vector2.UP.rotated(rotation) * flight_power
 		else:
 			ani.play("Idle")
 	
