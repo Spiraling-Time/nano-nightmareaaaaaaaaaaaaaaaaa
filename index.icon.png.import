@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf0wsylm48tee"
-path="res://.godot/imported/Robo_guy_dash.png-820463e2658c8f8cd2e10e63ce1197da.ctex"
+uid="uid://8jspstxei3w5"
+path="res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game_Stuff/Assets/Robo_guy/Robo_guy_dash.png"
-dest_files=["res://.godot/imported/Robo_guy_dash.png-820463e2658c8f8cd2e10e63ce1197da.ctex"]
+source_file="res://index.icon.png"
+dest_files=["res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.ctex"]
 
 [params]
 

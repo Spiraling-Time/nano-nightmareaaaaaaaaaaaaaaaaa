@@ -7,22 +7,18 @@ var fake_scale = 1
 var jump_height = 1000
 
 func _ready() -> void:
-	$AnimationPlayer.play("start")
-	$attack1.monitoring = false
+	pass
 
 func _physics_process(delta: float) -> void:
-	
-	if $AnimationPlayer.current_animation == "attack":
-		if $attack1.monitoring:
-			if $attack1.get_overlapping_bodies().size() > 0:
-				for bodies in $attack1.get_overlapping_bodies():
-					if bodies != self and bodies.has_method("delete_self"):
+	pass
+			#if $attack1.get_overlapping_bodies().size() > 0:
+				#for bodies in $attack1.get_overlapping_bodies():
+					#if bodies != self and bodies.has_method("delete_self"):
 						#$"..".max_number_of_bots -= 1
 						# FIX THIS $"..".number_of_bots -= 1
-						bodies.delete_self()
+						#bodies.delete_self()
 	
-	elif Input.get_action_strength("attack") >= 1:
-		$AnimationPlayer.play("attack")
+
 	
 	if Input.get_action_strength("left") >= 1:
 		velocity.x = -1 * speed
@@ -49,11 +45,3 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if $RayCast2D.is_colliding():
 		gravity = 0
-
-
-func hitbox_active():
-	$attack1.monitoring = true
-	
-	
-func hitbox_disabled():
-	$attack1.monitoring = false

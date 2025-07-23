@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w24hscihrxbr"
-path="res://.godot/imported/sprite_sheet (17).png-e6f00042a554e574280a15b47eeea69f.ctex"
+uid="uid://cimrcouf5uwiw"
+path="res://.godot/imported/Nano Nightmare art (2).png-2504fcd86feec287573ec0a5f53f31bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game_Stuff/Assets/Robo_guy/sprite_sheet (17).png"
-dest_files=["res://.godot/imported/sprite_sheet (17).png-e6f00042a554e574280a15b47eeea69f.ctex"]
+source_file="res://Game_Stuff/Assets/Nanobot/Nano Nightmare art (2).png"
+dest_files=["res://.godot/imported/Nano Nightmare art (2).png-2504fcd86feec287573ec0a5f53f31bf.ctex"]
 
 [params]
 

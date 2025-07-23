@@ -38,7 +38,7 @@ func _ready() -> void:
 	spin_dir = randi_range(0,1)
 	randiii = randi_range(1,4)
 	if randiii == 1:
-		nano_illusion = preload("res://Game_Stuff/Assets/Nano Nightmare art.png")
+		nano_illusion = preload("res://Game_Stuff/Assets/Nanobot/Nano Nightmare art.png")
 		$CollisionShape2D4.disabled = true
 		$CollisionShape2D5.disabled = true
 		$CollisionShape2D2.disabled = true
@@ -48,13 +48,13 @@ func _ready() -> void:
 
 		
 	elif randiii == 2:
-		nano_illusion = preload("res://Game_Stuff/Assets/Nano Nightmare art (1).png")
+		nano_illusion = preload("res://Game_Stuff/Assets/Nanobot/Nano Nightmare art (1).png")
 		$CollisionShape2D6.disabled = true
 		$CollisionShape2D7.disabled = true
 
 
 	elif randiii == 3:
-		nano_illusion = preload("res://Game_Stuff/Assets/Nano Nightmare art (2).png")
+		nano_illusion = preload("res://Game_Stuff/Assets/Nanobot/Nano Nightmare art (2).png")
 		$CollisionShape2D.disabled = true
 		$CollisionShape2D4.disabled = true
 		$CollisionShape2D5.disabled = true
@@ -63,7 +63,7 @@ func _ready() -> void:
 	
 	
 	else:
-		nano_illusion = preload("res://Game_Stuff/Assets/Nano Nightmare art (3).png")
+		nano_illusion = preload("res://Game_Stuff/Assets/Nanobot/Nano Nightmare art (3).png")
 		$CollisionShape2D4.disabled = true
 		$CollisionShape2D5.disabled = true
 		$CollisionShape2D6.disabled = true
