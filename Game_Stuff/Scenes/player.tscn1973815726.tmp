@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckfp17b5mt727"]
+
+[ext_resource type="Script" uid="uid://dbgxrk16jdwdg" path="res://Game_Stuff/Code/player.gd" id="1_xknox"]
+[ext_resource type="Texture2D" uid="uid://uh1ghglxuk4g" path="res://Game_Stuff/Assets/Robo_guy/Body 001.png" id="2_xknox"]
+[ext_resource type="PackedScene" uid="uid://b2kdkkad2v1cx" path="res://Game_Stuff/Scenes/robo_leg.tscn" id="3_vnf7s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnf7s"]
+size = Vector2(56, 90)
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_xknox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_vnf7s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xknox")
+
+[node name="Robo_leg1" parent="." instance=ExtResource("3_vnf7s")]
+position = Vector2(3, 40)
+
+[node name="Robo_leg2" parent="." instance=ExtResource("3_vnf7s")]
+z_index = -1
+position = Vector2(-3, 40)
+
+[node name="PinJoint2D1" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../Robo_leg1")
+angular_limit_enabled = true
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../Robo_leg2")
+angular_limit_enabled = true

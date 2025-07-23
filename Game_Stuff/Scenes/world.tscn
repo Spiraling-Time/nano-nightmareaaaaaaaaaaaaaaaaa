@@ -30,7 +30,8 @@ sources/0 = SubResource("TileSetAtlasSource_72umx")
 script = ExtResource("1_yy1qi")
 
 [node name="player" parent="." instance=ExtResource("2_yp3uo")]
-position = Vector2(-736, -144)
+z_index = 2
+position = Vector2(-672, -304)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 limit_bottom = 326
