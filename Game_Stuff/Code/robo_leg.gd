@@ -8,27 +8,34 @@ var leg_number = 0
 
 var pin
 
+@onready var prev_pos = $"..".global_position
+
+var flippable: bool = false
+
 func _ready() -> void:
 	ani.play("Idle")
 	if leg_number == 1: pin = $"../PinJoint2D1"
 	elif leg_number == 2: pin = $"../PinJoint2D2"
 
 func _physics_process(delta: float) -> void:
+	if abs($"..".global_position.x-prev_pos.x) > 10:
+		flippable = true
+	else:
+		flippable = false
+	
+	
 	if leg_number == 1:
 		if Input.get_action_strength("front_left") >=1:
 			
 			apply_torque_impulse(power*-1)
-			$"../Sprite2D".flip_h = true
+			if flippable: $"../Sprite2D".flip_h = true
 		elif Input.get_action_strength("front_right") >=1:
 			apply_torque_impulse(power)
-			$"../Sprite2D".flip_h = false
+			if flippable: $"../Sprite2D".flip_h = false
 		
 		if Input.get_action_strength("front_up") >=1:
 			ani.play("Fly")
-			#$"../PinJoint2D1".angular_limit_enabled = true
-			pin.set_angular_limit_lower(rotation)
-			pin.set_angular_limit_upper(rotation)
-			linear_velocity = Vector2.UP.rotated(rotation) * power/10
+			linear_velocity = Vector2.UP.rotated(rotation) * power/2
 		else:
 			#$"../PinJoint2D1".angular_limit_enabled = false
 			ani.play("Idle")
@@ -36,19 +43,15 @@ func _physics_process(delta: float) -> void:
 	elif leg_number == 2:
 		if Input.get_action_strength("back_left") >=1:
 			apply_torque_impulse(power*-1)
-			$"../Sprite2D".flip_h = true
-		elif Input.get_action_strength("back_left") >=1:
+			if flippable: $"../Sprite2D".flip_h = true
+		elif Input.get_action_strength("back_right") >=1:
 			apply_torque_impulse(power)
-			$"../Sprite2D".flip_h = false
+			if flippable: $"../Sprite2D".flip_h = false
 		
 		if Input.get_action_strength("back_up") >=1:
 			ani.play("Fly")
-			#$"../PinJoint2D2".angular_limit_enabled = true
-			pin.set_angular_limit_lower(rotation)
-			pin.set_angular_limit_upper(rotation)
-			linear_velocity = Vector2.UP.rotated(rotation) * power/10
+			linear_velocity = Vector2.UP.rotated(rotation) * power/2
 		else:
-			#$"../PinJoint2D2".angular_limit_enabled = false
 			ani.play("Idle")
 	
 	
@@ -60,7 +63,7 @@ func _physics_process(delta: float) -> void:
 					bodies.get_parent().number_of_bots -= 1
 					# FIX THIS $"..".number_of_bots -= 1
 					bodies.delete_self()
-	
+	prev_pos = $"..".global_position
 
 
 func burn_active():
