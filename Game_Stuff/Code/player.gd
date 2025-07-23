@@ -11,5 +11,7 @@ func _ready() -> void:
 	$Robo_leg2.leg_number = 2
 
 func _physics_process(delta: float) -> void:
-	if global_position.x > get_global_mouse_position().x: $Sprite2D.flip_h = true
+	if global_position.x > $"../human_body".position.x: $Sprite2D.flip_h = true
 	else: $Sprite2D.flip_h = false
+	
+	#angular_velocity = rotation *-1
