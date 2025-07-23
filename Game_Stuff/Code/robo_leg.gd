@@ -17,8 +17,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if $"..".global_position.x > get_global_mouse_position().x: $"../Sprite2D".flip_h = true
-	else: $"../Sprite2D".flip_h = false
+
 	
 	if leg_number == 1:
 		if Input.get_action_strength("front_left") >=1:
