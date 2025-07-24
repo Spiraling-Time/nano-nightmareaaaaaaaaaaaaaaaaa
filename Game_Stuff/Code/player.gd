@@ -34,14 +34,14 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	else: turn_power = max_turn_power
 	
 
-	if Input.get_action_strength("front_up") >= .1 or Input.get_action_strength("back_up") >= .1:
+	if Input.get_action_strength("up") >= .1:
 		apply_central_impulse(Vector2.UP.rotated(rotation) * flight_power)
 		$AnimationPlayer.play("Fly")
 	else:
 		$AnimationPlayer.play("Idle")
 
-	if Input.get_action_strength("front_left") >= .1 or Input.get_action_strength("back_left") >= .1:
+	if Input.get_action_strength("left") >= .1:
 		angular_velocity = -1*turn_power
 
-	elif Input.get_action_strength("front_right") >= .1 or Input.get_action_strength("back_right") >= .1:
+	elif Input.get_action_strength("right") >= .1:
 		angular_velocity = turn_power
