@@ -87,6 +87,7 @@ size = Vector2(24, 50)
 [node name="Robo_leg" type="RigidBody2D"]
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_s82v5")
+linear_velocity = Vector2(0, 10.5)
 script = ExtResource("1_s82v5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
