@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dbgxrk16jdwdg" path="res://Game_Stuff/Code/player.gd" id="1_xknox"]
 [ext_resource type="Texture2D" uid="uid://dvbll7albmwcr" path="res://Game_Stuff/Assets/Robo_guy/body sprite sheet.png" id="2_vnf7s"]
-[ext_resource type="PackedScene" uid="uid://b2kdkkad2v1cx" path="res://Game_Stuff/Scenes/robo_leg.tscn" id="3_vnf7s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vnf7s"]
 
@@ -64,6 +63,9 @@ _data = {
 &"RESET": SubResource("Animation_kinf7")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xknox"]
+size = Vector2(56, 33)
+
 [node name="player" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 4
@@ -84,21 +86,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_kinf7")
 }
 
-[node name="Robo_leg1" parent="." instance=ExtResource("3_vnf7s")]
-position = Vector2(3, 40)
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
-[node name="Robo_leg2" parent="." instance=ExtResource("3_vnf7s")]
-z_index = -1
-position = Vector2(-3, 40)
-
-[node name="PinJoint2D1" type="PinJoint2D" parent="."]
-node_a = NodePath("..")
-node_b = NodePath("../Robo_leg1")
-angular_limit_lower = -1.5708
-motor_target_velocity = 0.174533
-
-[node name="PinJoint2D2" type="PinJoint2D" parent="."]
-node_a = NodePath("..")
-node_b = NodePath("../Robo_leg2")
-angular_limit_lower = 1.5708
-motor_target_velocity = -0.174533
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 50)
+shape = SubResource("RectangleShape2D_xknox")

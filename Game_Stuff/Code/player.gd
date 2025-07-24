@@ -6,26 +6,34 @@ var fake_scale = 1
 
 var jump_height = 1000
 
-var flight_power = 50
+var flight_power = 20
 
-var turn_power = 1
+var max_turn_power = 1
+var turn_power = max_turn_power
 
 func _ready() -> void:
-	$Robo_leg1.leg_number = 1
-	$Robo_leg2.leg_number = 2
+
 	$AnimationPlayer.play("Idle")
 
 func _physics_process(delta: float) -> void:
 	if global_position.x > $"../human_body".global_position.x: $Sprite2D.flip_h = true
 	else: $Sprite2D.flip_h = false
+	if $AnimationPlayer.current_animation == "Fly":
+		if $Area2D.get_overlapping_bodies().size() > 0:
+			for bodies in $Area2D.get_overlapping_bodies():
+				if bodies != self and bodies.has_method("delete_self"):
+					bodies.get_parent().number_of_bots -= 1
+					bodies.delete_self()
+
+
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	#if Input.get_action_strength("gravity_shift") >= 1:
-		#PhysicsServer2D.area_set_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY_VECTOR, (global_position.direction_to($"../human_body".global_position)).normalized())
-	#if Input.get_action_strength("front_left") >= 1 or Input.get_action_strength("back_left") >= 1:
-		#angular_velocity = -1
-	#elif Input.get_action_strength("front_right") >= 1 or Input.get_action_strength("back_right") >= 1:
-		#angular_velocity = 1
+	
+	if Input.get_action_strength("spin") >= .1:
+		turn_power = max_turn_power * 20
+	else: turn_power = max_turn_power
+	
+
 	if Input.get_action_strength("front_up") >= .1 or Input.get_action_strength("back_up") >= .1:
 		apply_central_impulse(Vector2.UP.rotated(rotation) * flight_power)
 		$AnimationPlayer.play("Fly")
@@ -35,5 +43,5 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if Input.get_action_strength("front_left") >= .1 or Input.get_action_strength("back_left") >= .1:
 		angular_velocity = -1*turn_power
 
-	elif Input.get_action_strength("front_right") >=1 or Input.get_action_strength("back_right") >= .1:
+	elif Input.get_action_strength("front_right") >= .1 or Input.get_action_strength("back_right") >= .1:
 		angular_velocity = turn_power
