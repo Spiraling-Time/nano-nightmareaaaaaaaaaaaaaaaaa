@@ -22,10 +22,21 @@ var spin_right : bool = false
 var spin_up : bool = false
 
 
-func _ready() -> void:
-	pass
+
 
 func _physics_process(delta: float) -> void:
+	#if global_position.x > $"../human_body".global_position.x: $body.flip_h = true
+	#else: $body.flip_h = false
+	#if $AnimationPlayer.current_animation == "Fly":
+		#if $Area2D.get_overlapping_bodies().size() > 0:
+			#for bodies in $Area2D.get_overlapping_bodies():
+				#if bodies != self and bodies.has_method("delete_self"):
+					#bodies.get_parent().number_of_bots -= 1
+					#bodies.delete_self()
+	pass
+
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if global_position.x > $"../human_body".global_position.x: $body.flip_h = true
 	else: $body.flip_h = false
 	if $AnimationPlayer.current_animation == "Fly":
@@ -35,13 +46,6 @@ func _physics_process(delta: float) -> void:
 					bodies.get_parent().number_of_bots -= 1
 					bodies.delete_self()
 
-
-
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	
-	#if Input.get_action_strength("spin") >= .1:
-		#turn_power = max_turn_power * 20
-	#else: turn_power = max_turn_power
 	
 
 	if Input.get_action_strength("up") >= .1:
@@ -54,19 +58,30 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		
 	if Input.get_action_strength("left") >= .1:
 		left_pressed = true
-		if spin_left: angular_velocity = -20*turn_power
-		else: angular_velocity = -1*turn_power
-	
+		if spin_left:
+			angular_velocity = -20*turn_power
+
+		else:
+			angular_velocity = -1*turn_power
+
+			
+			
+			
 	elif Input.get_action_strength("right") >= .1:
 		right_pressed = true
-		if spin_right: angular_velocity = 20*turn_power
-		else: angular_velocity = turn_power
-	
+		if spin_right:
+			angular_velocity = 20*turn_power
+		else:
+			angular_velocity = turn_power
+
+
+
 	if Input.get_action_strength("left") <= 0:
 		if left_pressed:
 			left_pressed = false
 			spin_left = false
 			$left_timer.start()
+
 
 	if Input.get_action_strength("right") <= 0:
 		if right_pressed:

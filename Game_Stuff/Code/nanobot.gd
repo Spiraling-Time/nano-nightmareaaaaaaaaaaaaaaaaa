@@ -20,7 +20,6 @@ var nano_illusion
 var randiii
 
 
-@onready var contact = $Contact
 
 func _ready() -> void:
 	#if nano_type == "TORSO": nano_thingIcantthinkofname = $"../human_body/body/torso"
