@@ -44,3 +44,9 @@ func _process(delta: float) -> void:
 			fall_speed = 1
 	#if mode == "IDLE":
 		
+
+#func check_player() -> bool:
+	#for bodies in $Area2D.get_overlapping_bodies():
+		#if bodies.has_method("damage"):
+			#return true
+	#return false

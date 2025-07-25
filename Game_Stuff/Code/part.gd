@@ -10,10 +10,10 @@ var max_number_of_bots# = null #800
 
 
 func _physics_process(delta: float) -> void:
-	#if max_number_of_bots - number_of_bots >= 10:
-		#spawn_bots(randi_range(1,10))
-	#print(max_number_of_bots - number_of_bots)
-	pass
+	if max_number_of_bots - number_of_bots >= 10:
+		spawn_bots(randi_range(1,10))
+	#wprint(max_number_of_bots - number_of_bots)
+	#pass#Check spawn so dont;' soawn in player
 	
 func spawn_bots(count: int):
 	for i in count:
@@ -72,6 +72,12 @@ func spawn_bots(count: int):
 				new_bot.nano_size_x = 100
 				new_bot.nano_size_y = 40
 				#new_bot.position = $human_body/body/lower_leg2.global_position + Vector2(randi_range(-10,10),randi_range(-10,10))
-			
+			new_bot.position += Vector2(randi_range(-100,100),randi_range(-100,100))
+
 			add_child(new_bot)
-		
+			get_owner().get_node("Area2D").global_position = new_bot.global_position
+			#print(get_owner().get_node("Area2D").global_position)
+			for bodies in get_owner().get_node("Area2D").get_overlapping_bodies():
+				if bodies.has_method("damage"):
+					number_of_bots -= 1
+					new_bot.queue_free()

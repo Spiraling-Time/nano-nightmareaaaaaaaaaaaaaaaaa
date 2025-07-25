@@ -71,7 +71,7 @@ func _ready() -> void:
 	
 	$Sprite2D.texture = nano_illusion
 	
-	position+= Vector2(randi_range(-100,100),randi_range(-100,100))
+	
 	
 	$Timer.start()
 	

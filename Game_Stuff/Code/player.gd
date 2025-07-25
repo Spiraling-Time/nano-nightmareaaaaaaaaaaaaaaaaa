@@ -105,3 +105,6 @@ func _on_right_timer_timeout() -> void:
 
 #func _on_up_timer_timeout() -> void:
 	#if up_pressed: spin_up = true
+
+func damage(damage):
+	pass
