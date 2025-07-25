@@ -81,3 +81,4 @@ func spawn_bots(count: int):
 				if bodies.has_method("damage"):
 					number_of_bots -= 1
 					new_bot.queue_free()
+			if new_bot: new_bot.start()

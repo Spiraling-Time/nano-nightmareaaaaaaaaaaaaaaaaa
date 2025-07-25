@@ -20,6 +20,7 @@ var nano_illusion
 var randiii
 
 
+var alive: bool = false
 
 func _ready() -> void:
 	#if nano_type == "TORSO": nano_thingIcantthinkofname = $"../human_body/body/torso"
@@ -35,6 +36,15 @@ func _ready() -> void:
 	nano_thingIcantthinkofname = get_parent()
 	#print(nano_thingIcantthinkofname)
 	spin_dir = randi_range(0,1)
+
+func start():
+	$CollisionShape2D.disabled = false
+	$CollisionShape2D4.disabled = false
+	$CollisionShape2D5.disabled = false
+	$CollisionShape2D2.disabled = false
+	$CollisionShape2D3.disabled = false
+	$CollisionShape2D6.disabled = false
+	$CollisionShape2D7.disabled = false
 	randiii = randi_range(1,4)
 	if randiii == 1:
 		nano_illusion = preload("res://Game_Stuff/Assets/Nanobot/Nano Nightmare art.png")
@@ -74,36 +84,36 @@ func _ready() -> void:
 	
 	
 	$Timer.start()
+	alive = true
+
 	
 func _physics_process(delta: float) -> void:
+	if alive:
+		if randiii != 1:
+			if spin_dir == 0: rotation -= 0.2
+			else: rotation += 0.2
+			if rotation > 360.0 or rotation < -360.0:
+				rotation = 0.0
+				spin_dir = randi_range(0,1)
+		if mode == "RETURN":
+			var point_towards = Vector2.ZERO
+			point_towards = nano_thingIcantthinkofname.global_position - global_position
+			direction = point_towards.normalized()
 
-	
-	
-	if randiii != 1:
-		if spin_dir == 0: rotation -= 0.2
-		else: rotation += 0.2
-		if rotation > 360.0 or rotation < -360.0:
-			rotation = 0.0
-			spin_dir = randi_range(0,1)
-	if mode == "RETURN":
-		var point_towards = Vector2.ZERO
-		point_towards = nano_thingIcantthinkofname.global_position - global_position
-		direction = point_towards.normalized()
+		#if direction == Vector2.ZERO: move_randomly()
+		velocity = direction * speed
 
-	#if direction == Vector2.ZERO: move_randomly()
-	velocity = direction * speed
-
-	
-	move_and_slide()
-	
-	if global_position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or global_position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or global_position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or global_position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
-		mode = "RETURN"
-	else: # global_position.distance_to(nano_thingIcantthinkofname.global_position) <= 101: #MAKE THIS ELSE IF THERE ARE PROBLEMS
-		mode = "AWAY"
-		$Timer.start()
-		move_randomly()
 		
-	#print(mode)
+		move_and_slide()
+		
+		if global_position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or global_position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or global_position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or global_position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
+			mode = "RETURN"
+		else: # global_position.distance_to(nano_thingIcantthinkofname.global_position) <= 101: #MAKE THIS ELSE IF THERE ARE PROBLEMS
+			mode = "AWAY"
+			$Timer.start()
+			move_randomly()
+			
+		#print(mode)
 
 
 func move_randomly():

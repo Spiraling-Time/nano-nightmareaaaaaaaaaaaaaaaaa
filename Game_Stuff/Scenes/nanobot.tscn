@@ -16,30 +16,37 @@ texture = ExtResource("2_g41sc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g41sc")
+disabled = true
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13)
 shape = SubResource("CircleShape2D_g41sc")
+disabled = true
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_g41sc")
+disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-13, 0)
 shape = SubResource("CircleShape2D_g41sc")
+disabled = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2(13, 0)
 shape = SubResource("CircleShape2D_g41sc")
+disabled = true
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
 position = Vector2(9, 0)
 shape = SubResource("CircleShape2D_g41sc")
+disabled = true
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
 position = Vector2(-9, 0)
 shape = SubResource("CircleShape2D_g41sc")
+disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
