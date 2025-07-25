@@ -14,17 +14,20 @@ var turn_power = max_turn_power
 var left_pressed: bool = false
 var right_pressed: bool = false
 
+var up_pressed:bool = false
+
 var spin_left : bool = false
 var spin_right : bool = false
 
+var spin_up : bool = false
+
 
 func _ready() -> void:
-
-	$AnimationPlayer.play("Idle")
+	pass
 
 func _physics_process(delta: float) -> void:
-	if global_position.x > $"../human_body".global_position.x: $Sprite2D.flip_h = true
-	else: $Sprite2D.flip_h = false
+	if global_position.x > $"../human_body".global_position.x: $body.flip_h = true
+	else: $body.flip_h = false
 	if $AnimationPlayer.current_animation == "Fly":
 		if $Area2D.get_overlapping_bodies().size() > 0:
 			for bodies in $Area2D.get_overlapping_bodies():
@@ -42,26 +45,22 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	
 
 	if Input.get_action_strength("up") >= .1:
+		#up_pressed = true
+		$fire.visible = true
 		apply_central_impulse(Vector2.UP.rotated(rotation) * flight_power)
 		$AnimationPlayer.play("Fly")
 	else:
-		$AnimationPlayer.play("Idle")
-
+		$fire.visible = false
+		
 	if Input.get_action_strength("left") >= .1:
-		if spin_left:
-			left_pressed = true
-			angular_velocity = -20*turn_power
-		else:
-			left_pressed = true
-			angular_velocity = -1*turn_power
+		left_pressed = true
+		if spin_left: angular_velocity = -20*turn_power
+		else: angular_velocity = -1*turn_power
 	
 	elif Input.get_action_strength("right") >= .1:
-		if spin_right:
-			right_pressed = true
-			angular_velocity = 20*turn_power
-		else:
-			right_pressed = true
-			angular_velocity = turn_power
+		right_pressed = true
+		if spin_right: angular_velocity = 20*turn_power
+		else: angular_velocity = turn_power
 	
 	if Input.get_action_strength("left") <= 0:
 		if left_pressed:
@@ -75,9 +74,19 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			spin_right = false
 			$right_timer.start()
 
+	#if Input.get_action_strength("up") <= 0:
+		#if up_pressed:
+			#up_pressed = false
+			#spin_up = false
+			#$up_timer.start()
+
 
 func _on_left_timer_timeout() -> void:
 	if left_pressed: spin_left = true
 
 func _on_right_timer_timeout() -> void:
 	if right_pressed: spin_right = true
+
+
+#func _on_up_timer_timeout() -> void:
+	#if up_pressed: spin_up = true
