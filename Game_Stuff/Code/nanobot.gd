@@ -23,6 +23,8 @@ var able_to_hurt: bool = false
 
 var alive: bool = false
 
+@onready var timer = $Timer
+
 func _ready() -> void:
 	#if nano_type == "TORSO": nano_thingIcantthinkofname = $"../human_body/body/torso"
 	#elif nano_type == "HEAD": nano_thingIcantthinkofname = $"../human_body/body/head"
@@ -84,7 +86,7 @@ func start():
 	
 	
 	
-	$Timer.start()
+	timer.start()
 	alive = true
 
 	
@@ -111,7 +113,7 @@ func _physics_process(delta: float) -> void:
 			mode = "RETURN"
 		else: # global_position.distance_to(nano_thingIcantthinkofname.global_position) <= 101: #MAKE THIS ELSE IF THERE ARE PROBLEMS
 			mode = "AWAY"
-			$Timer.start()
+			timer.start()
 			move_randomly()
 			
 		#print(mode)
@@ -139,7 +141,7 @@ func move_randomly():
 
 func _on_timer_timeout() -> void:
 	if mode == "AWAY":
-		$Timer.start()
+		timer.start()
 		move_randomly()
 
 func delete_self():
