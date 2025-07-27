@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	if position.y >= 248.0 or position.x <= -4352.0 or position.x >= 4488.0: #global_position.distance_to(prev_pos) >= 2000: #or position.y >= 248.0 or position.x <= -4352.0 or position.x >= 4488.0:
+	if position.y >= 248.0 or position.y <=-2808.0 or position.x <= -4352.0 or position.x >= 4488.0: #global_position.distance_to(prev_pos) >= 2000: #or position.y >= 248.0 or position.x <= -4352.0 or position.x >= 4488.0:
 		$"..".end_game()
 	prev_pos = global_position
 	if global_position.x > $"../human_body".global_position.x: $body.flip_h = true
