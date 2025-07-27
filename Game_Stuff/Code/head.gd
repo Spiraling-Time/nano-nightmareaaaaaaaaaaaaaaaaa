@@ -5,5 +5,5 @@ func _ready() -> void:
 	max_number_of_bots = 250 
 	
 	await get_tree().process_frame
-	print(max_number_of_bots)
+	#print(max_number_of_bots)
 	spawn_bots(max_number_of_bots)

@@ -6,7 +6,7 @@ extends Node2D
 var type_of_part# = null
 var number_of_bots = 0
 var max_number_of_bots# = null #800
-
+var parts_able_to_hurt: bool = false
 
 
 func _physics_process(delta: float) -> void:

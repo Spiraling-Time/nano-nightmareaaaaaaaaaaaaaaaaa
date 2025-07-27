@@ -19,6 +19,7 @@ var nano_illusion
 
 var randiii
 
+var able_to_hurt: bool = false
 
 var alive: bool = false
 

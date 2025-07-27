@@ -68,8 +68,20 @@ script = ExtResource("11_y887g")
 position = Vector2(-50, 39)
 target_position = Vector2(100, 0)
 
+[node name="near_wall1" type="RayCast2D" parent="body/torso"]
+target_position = Vector2(400, 0)
+
+[node name="near_wall2" type="RayCast2D" parent="body/torso"]
+target_position = Vector2(-400, 0)
+
 [node name="Area2D" type="Area2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_pk788")
+
+[node name="Animation_Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Animation_Timer" to="." method="_on_animation_timer_timeout"]

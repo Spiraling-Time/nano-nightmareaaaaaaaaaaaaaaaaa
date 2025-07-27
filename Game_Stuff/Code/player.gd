@@ -21,7 +21,7 @@ var spin_right : bool = false
 
 var spin_up : bool = false
 
-
+var prev_pos = Vector2.ZERO
 
 
 func _physics_process(delta: float) -> void:
@@ -37,6 +37,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if position.y >= 248.0 or position.x <= -4352.0 or position.x >= 4488.0: #global_position.distance_to(prev_pos) >= 2000: #or position.y >= 248.0 or position.x <= -4352.0 or position.x >= 4488.0:
+		$"..".end_game()
+	prev_pos = global_position
 	if global_position.x > $"../human_body".global_position.x: $body.flip_h = true
 	else: $body.flip_h = false
 	if $AnimationPlayer.current_animation == "Fly":
