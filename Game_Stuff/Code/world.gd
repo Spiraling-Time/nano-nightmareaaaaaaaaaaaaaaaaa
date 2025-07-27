@@ -5,5 +5,5 @@ func _ready() -> void:
 
 func end_game():
 	get_tree().paused = true
-	print("Is inside tree?", is_inside_tree())  # Should print true
+	#print("Is inside tree?", is_inside_tree())  # Should print true
 	$Game_Ender.really_end_the_round()
