@@ -10,8 +10,8 @@ var parts_able_to_hurt: bool = false
 
 
 func _physics_process(delta: float) -> void:
-	if max_number_of_bots - number_of_bots >= 10:
-		spawn_bots(randi_range(1,10))
+	if max_number_of_bots - number_of_bots >= 1:
+		spawn_bots(1)
 	#wprint(max_number_of_bots - number_of_bots)
 	#pass#Check spawn so dont;' soawn in player
 	
