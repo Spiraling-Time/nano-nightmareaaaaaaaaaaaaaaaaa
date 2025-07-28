@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		if leg_height_resetter.is_stopped():
 			reset_basic_position()
 			leg_height_resetter.start()
-			print("restarting")
+			#print("restarting")
 		if speed > 0:
 			if !near_wall1.is_colliding():
 				position.x += speed
