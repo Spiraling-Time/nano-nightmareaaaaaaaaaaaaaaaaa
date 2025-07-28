@@ -128,8 +128,8 @@ func _physics_process(delta: float) -> void:
 					leg2_movement = "Forward"
 					
 					
-		print("leg1_movement: ", leg1_movement, " leg2_movement: ", leg2_movement)
-		print("leg1_rotation: ", upper_leg1.rotation, " leg2_rotation: ", upper_leg2.rotation)
+		#print("leg1_movement: ", leg1_movement, " leg2_movement: ", leg2_movement)
+		#print("leg1_rotation: ", upper_leg1.rotation, " leg2_rotation: ", upper_leg2.rotation)
 			
 			
 			
