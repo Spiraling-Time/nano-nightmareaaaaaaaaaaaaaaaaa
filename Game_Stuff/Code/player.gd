@@ -23,13 +23,10 @@ var prev_pos = Vector2.ZERO
 @onready var rightimer = $right_timer
 @onready var nanoboss = $"../human_body"
 @onready var bodysprite = $body
+@onready var turnaroundtimer = $turn_around_timer
 
 
 
-
-func _physics_process(delta: float) -> void:
-	if global_position.x > nanoboss.global_position.x: bodysprite.flip_h = true
-	else: bodysprite.flip_h = false
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
@@ -66,3 +63,8 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func damage(damage):
 	pass
+
+
+func _on_turn_around_timer_timeout() -> void:
+	if global_position.x > nanoboss.global_position.x: bodysprite.flip_h = true
+	else: bodysprite.flip_h = false

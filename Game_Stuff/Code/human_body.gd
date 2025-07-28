@@ -42,16 +42,7 @@ func _ready() -> void:
 	basic_rotation()
 
 func _physics_process(delta: float) -> void:
-	if $"../player".global_position.distance_to(global_position) >= 300:
-		if global_position.x > $"../player".global_position.x:
-			if speed != max_speed*-1:
-				facing = "left"
-				speed = max_speed*-1
-				basic_rotation()
-		elif speed != max_speed:
-			facing = "right"
-			speed = max_speed
-			basic_rotation()
+
 			
 	#print("nano: ", global_position.x, " player: ", $"../player".global_position.x)
 	if mode == "WALK":
@@ -197,3 +188,15 @@ func basic_rotation():
 	#basic_position()
 	#upper_leg1.rotation = 0
 	#upper_leg2.rotation = 0
+
+
+func _on_turnaroundtimer_timeout() -> void:
+	if global_position.x > $"../player".global_position.x:
+		if speed >0:
+			facing = "left"
+			speed = max_speed*-1
+			basic_rotation()
+	elif speed <0:
+		facing = "right"
+		speed = max_speed
+		basic_rotation()

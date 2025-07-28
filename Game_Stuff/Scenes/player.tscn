@@ -91,3 +91,8 @@ shape = SubResource("RectangleShape2D_otuxt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_kinf7")
+
+[node name="turn_around_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="turn_around_timer" to="." method="_on_turn_around_timer_timeout"]
