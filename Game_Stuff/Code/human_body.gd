@@ -55,6 +55,9 @@ func _physics_process(delta: float) -> void:
 				position.x += speed
 		elif !near_wall2.is_colliding():
 			position.x += speed
+		if speed < 50 and speed > -50: speed = speed*1.01
+		if speed > 50: speed = 50
+		elif speed < -50: speed = -50
 		basic_positions(false, false, false, false, false, false, false, true, false, true)
 		if leg1_movement == "Forward":
 			if facing == "left":
