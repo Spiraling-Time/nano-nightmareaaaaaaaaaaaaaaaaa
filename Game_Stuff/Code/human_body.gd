@@ -55,6 +55,7 @@ func _physics_process(delta: float) -> void:
 		if leg_height_resetter.is_stopped():
 			reset_basic_position()
 			leg_height_resetter.start()
+			print("restarting")
 		if speed > 0:
 			if !near_wall1.is_colliding():
 				position.x += speed
@@ -63,63 +64,69 @@ func _physics_process(delta: float) -> void:
 		basic_positions(false, false, false, false, false, false, false, true, false, true)
 		if leg1_movement == "Forward":
 			if facing == "left":
+				upper_leg1.position.y += 1
 				upper_leg1.rotation += 0.2
 				#upper_leg2.rotation += -0.1
 				#print(upper_leg1.rotation)
 				if upper_leg1.rotation >= 2:
 					leg1_movement = "Backward"
-					upper_leg1.position.y -= 10
+					
 			else:
+				upper_leg1.position.y -= 2
 				upper_leg1.rotation += -0.2
 				#upper_leg2.rotation += 0.1
 				if upper_leg1.rotation <= -0.6:
 					leg1_movement = "Backward"
-					upper_leg1.position.y += 10
+					
 
 		elif leg1_movement == "Backward":
 			if facing == "left":
+				upper_leg1.position.y -= 2
 				upper_leg1.rotation += -0.2
 				#upper_leg2.rotation += 0.1
 				if upper_leg1.rotation <= -0.6:
 					leg1_movement = "Forward"
-					upper_leg1.position.y += 10
+				
 			else:
+				upper_leg1.position.y += 1
 				upper_leg1.rotation += 0.2
 				#upper_leg2.rotation += -0.1
 				if upper_leg1.rotation >= 2:
 					leg1_movement = "Forward"
-					upper_leg1.position.y -= 10
+					
 		if leg2_movement == "Forward":
 			if facing == "left":
-				
+				upper_leg2.position.y -= 2
 				upper_leg2.rotation += 0.2
 				#upper_leg2.rotation += -0.1
 				#print(upper_leg1.rotation)
 				if upper_leg2.rotation >= 0.6:
 					leg2_movement = "Backward"
-					upper_leg2.position.y += 10
 			else:
+				upper_leg2.position.y += 1
 				upper_leg2.rotation += -0.2
 				#upper_leg2.rotation += 0.1
 				if upper_leg2.rotation <= -2:
 					leg2_movement = "Backward"
-					upper_leg2.position.y -= 10
+					
 		elif leg2_movement == "Backward":
 			if facing == "left":
+				upper_leg2.position.y += 1
 				upper_leg2.rotation += -0.2
 				#upper_leg2.rotation += 0.1
 				if upper_leg2.rotation <= -2:
 					leg2_movement = "Forward"
-					upper_leg2.position.y -= 10
+					
 			else:
+				upper_leg2.position.y -= 2
 				upper_leg2.rotation += 0.2
 				#upper_leg2.rotation += -0.1
 				if upper_leg2.rotation >= 0.6:
 					leg2_movement = "Forward"
-					upper_leg2.position.y += 10
 					
-		print("leg1_movement: ", leg1_movement, " leg2_movement: ", leg2_movement)
-		print("leg1_rotation: ", upper_leg1.rotation, " leg2_rotation: ", upper_leg2.rotation)
+					
+		#print("leg1_movement: ", leg1_movement, " leg2_movement: ", leg2_movement)
+		#print("leg1_rotation: ", upper_leg1.rotation, " leg2_rotation: ", upper_leg2.rotation)
 			
 			
 			

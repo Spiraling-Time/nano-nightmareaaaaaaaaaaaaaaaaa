@@ -81,4 +81,5 @@ modulate = Color(0, 0, 0, 1)
 shape = SubResource("CircleShape2D_pk788")
 
 [node name="Reset_height" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
