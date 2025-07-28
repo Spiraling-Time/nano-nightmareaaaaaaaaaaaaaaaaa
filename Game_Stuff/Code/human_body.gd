@@ -44,11 +44,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if $"../player".global_position.distance_to(global_position) >= 300:
 		if global_position.x > $"../player".global_position.x:
-			facing = "left"
-			speed = max_speed*-1
-		else:
+			if speed != max_speed*-1:
+				facing = "left"
+				speed = max_speed*-1
+				basic_rotation()
+		elif speed != max_speed:
 			facing = "right"
 			speed = max_speed
+			basic_rotation()
 			
 	#print("nano: ", global_position.x, " player: ", $"../player".global_position.x)
 	if mode == "WALK":
@@ -125,8 +128,8 @@ func _physics_process(delta: float) -> void:
 					leg2_movement = "Forward"
 					
 					
-		#print("leg1_movement: ", leg1_movement, " leg2_movement: ", leg2_movement)
-		#print("leg1_rotation: ", upper_leg1.rotation, " leg2_rotation: ", upper_leg2.rotation)
+		print("leg1_movement: ", leg1_movement, " leg2_movement: ", leg2_movement)
+		print("leg1_rotation: ", upper_leg1.rotation, " leg2_rotation: ", upper_leg2.rotation)
 			
 			
 			
