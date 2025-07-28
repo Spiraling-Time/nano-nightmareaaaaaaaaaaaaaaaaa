@@ -32,7 +32,7 @@ script = ExtResource("1_yy1qi")
 
 [node name="player" parent="." instance=ExtResource("2_yp3uo")]
 z_index = 2
-position = Vector2(-672, -304)
+position = Vector2(-1304, -1872)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 limit_bottom = 326
