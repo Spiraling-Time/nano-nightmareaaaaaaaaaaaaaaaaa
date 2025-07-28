@@ -18,10 +18,14 @@ var prev_pos = Vector2.ZERO
 @onready var fire = $fire
 @onready var ani = $AnimationPlayer
 @onready var damager = $Area2D
+@onready var fast_turn = $Area2D2
 @onready var leftimer = $left_timer
 @onready var rightimer = $right_timer
 @onready var nanoboss = $"../human_body"
 @onready var bodysprite = $body
+
+
+
 
 func _physics_process(delta: float) -> void:
 	if global_position.x > nanoboss.global_position.x: bodysprite.flip_h = true
@@ -50,11 +54,13 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		ani.play("Fly")
 	else:
 		fire.visible = false
-		
-	if Input.is_action_pressed("left"): angular_velocity = -1*turn_power
-
-	elif Input.is_action_pressed("right"): angular_velocity = turn_power
-
+	
+	if fast_turn.get_overlapping_bodies().size() >= 2:
+		if Input.is_action_pressed("left"): angular_velocity = -10*turn_power
+		elif Input.is_action_pressed("right"): angular_velocity = 10*turn_power
+	else:
+		if Input.is_action_pressed("left"): angular_velocity = -1*turn_power
+		elif Input.is_action_pressed("right"): angular_velocity = turn_power
 
 
 

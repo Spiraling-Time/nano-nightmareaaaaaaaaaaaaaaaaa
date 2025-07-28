@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckfp17b5mt727"]
+[gd_scene load_steps=11 format=3 uid="uid://ckfp17b5mt727"]
 
 [ext_resource type="Script" uid="uid://dbgxrk16jdwdg" path="res://Game_Stuff/Code/player.gd" id="1_xknox"]
 [ext_resource type="Texture2D" uid="uid://dvbll7albmwcr" path="res://Game_Stuff/Assets/Robo_guy/body sprite sheet.png" id="2_vnf7s"]
@@ -50,6 +50,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otuxt"]
 size = Vector2(56, 33)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kinf7"]
+size = Vector2(58, 92)
+
 [node name="player" type="RigidBody2D"]
 collision_layer = 5
 collision_mask = 5
@@ -82,3 +85,9 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 50)
 shape = SubResource("RectangleShape2D_otuxt")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_kinf7")
