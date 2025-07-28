@@ -65,8 +65,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			position.y -= fall_speed
 			fall_speed = 1
-
+	if position.y <= -446.363: position.y = -446.363
 func basic_position():
+	#position.y = -446.363
 	if facing == "left":
 		torso.position = Vector2(25.0, 232.0)
 		head.position = Vector2(-1.0, -297.0)
@@ -93,36 +94,29 @@ func basic_position():
 
 func walk_position1():
 	if facing == "left":
-		#upper_leg1.position = Vector2(-189.0, 160.0)
-		#upper_leg2.position = Vector2(195.0, 208.0)
-		for i in range(0,200):
-			upper_leg1.position = Vector2(109.0 + i, 260.0 - i)
-			upper_leg2.position = Vector2(139.0, 260.0)
+		upper_leg1.position = Vector2(-189.0, 160.0)
+		lower_leg1.position = Vector2(-94.0, 168.0)
+		upper_leg2.position = Vector2(195.0, 208.0)
+		lower_leg2.position = Vector2(-32.00, 174.0)	
 	else:
-		#upper_leg1.position = Vector2(189.0, 160.0)
-		#upper_leg2.position = Vector2(-195.0, 208.0)
-		for i in range(0,200):
-			upper_leg1.position = Vector2(-1*(109.0 + i), 260.0 - i)
-			upper_leg2.position = Vector2(-139.0, 260.0)
+		upper_leg1.position = Vector2(189.0, 160.0)
+		lower_leg1.position = Vector2(94.0, 168.0)
+		upper_leg2.position = Vector2(-195.0, 208.0)
+		lower_leg2.position = Vector2(32.00, 174.0)
 
 func walk_position2():
+	position.y -= 10
 	if facing == "left":
-		#upper_leg1.position = Vector2(51.0, 280.0)
-		#lower_leg1.position = Vector2(-94.0, 168.0)
-		#upper_leg2.position = Vector2(-109.0, 272.0)
-		#lower_leg2.position = Vector2(-32.00, 174.0)
-		for i in range(0,200):
-			upper_leg1.position = Vector2(-109.0, 260.0)
-			upper_leg2.position = Vector2(-139.0 + i, 260.0 - i)
-
+		upper_leg1.position = Vector2(99.0, 272.0)
+		lower_leg1.position = Vector2(-94.0, 168.0)
+		upper_leg2.position = Vector2(-125.0, 256.0)
+		lower_leg2.position = Vector2(-32.00, 174.0)
 	else:
-		#upper_leg1.position = Vector2(-51.0, 280.0)
-		#lower_leg1.position = Vector2(94.0, 168.0)
-		#upper_leg2.position = Vector2(109.0, 272.0)
-		#lower_leg2.position = Vector2(32.00, 174.0)
-		for i in range(0,200):
-			upper_leg1.position = Vector2(109.0, 260.0)
-			upper_leg2.position = Vector2(-1*(-139.0 + i), 260.0 - i)
+		upper_leg1.position = Vector2(-99.0, 272.0)
+		lower_leg1.position = Vector2(94.0, 168.0)
+		upper_leg2.position = Vector2(125.0, 256.0)
+		lower_leg2.position = Vector2(32.00, 174.0)
+
 
 func _on_animation_timer_timeout() -> void:
 	if !walk_type: walk_position1()
