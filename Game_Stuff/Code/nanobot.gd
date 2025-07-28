@@ -92,6 +92,8 @@ func start():
 	
 func _physics_process(delta: float) -> void:
 	if alive:
+		if global_position.y >= 256.0: position.y-=1
+		
 		if randiii != 1:
 			if spin_dir == 0: rotation -= 0.2
 			else: rotation += 0.2
