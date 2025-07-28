@@ -57,7 +57,39 @@ func _physics_process(delta: float) -> void:
 				position.x += speed
 		elif !near_wall2.is_colliding():
 			position.x += speed
-	
+		basic_position()
+		if !walk_type:
+			if facing == "left":
+				upper_leg1.rotation += 0.1
+				upper_leg2.rotation += -0.1
+				
+			else:
+				upper_leg1.rotation += -0.1
+				upper_leg2.rotation += 0.1
+		else:
+			if facing == "left":
+				upper_leg1.rotation += -0.1
+				if upper_leg1.rotation == 0:
+					walk_type = !walk_type
+					$Animation_Timer.start()
+				upper_leg2.rotation += 0.1
+				if upper_leg2.rotation == 0:
+					walk_type = !walk_type
+					$Animation_Timer.start()
+
+			else:
+				upper_leg1.rotation += 0.1
+				if upper_leg1.rotation == 0:
+					walk_type = !walk_type
+					$Animation_Timer.start()
+				upper_leg2.rotation += -0.1
+				if upper_leg2.rotation == 0:
+					walk_type = !walk_type
+					$Animation_Timer.start()			
+			
+			
+			
+			
 	if !standing1.is_colliding() and !standing2.is_colliding():
 		position.y += fall_speed
 		if !standing1.is_colliding() and !standing2.is_colliding():
@@ -115,11 +147,13 @@ func walk_position1():
 		#lower_leg2.position = Vector2(32.00, 174.0)
 
 func walk_position2():
+	basic_position()
 	upper_leg1.rotation = 0
 	upper_leg2.rotation = 0
 
 
 
 func _on_animation_timer_timeout() -> void:
-	if !walk_type: walk_position1()
-	else: walk_position2()
+	#if !walk_type: walk_position1()
+	#else: walk_position2()
+	pass
