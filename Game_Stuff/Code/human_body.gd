@@ -25,8 +25,8 @@ var speed = max_speed
 var debugging: bool = false
 
 var overall_mode = "IDLE"
-var arm_mode = "IDLE"#"ATTACK1"
-var leg_mode = "IDLE"
+var arm_mode = "ATTACK1"#"IDLE"
+var leg_mode = "WALK"#"IDLE"
 
 var fall_speed = 1
 
@@ -205,3 +205,12 @@ func _on_turnaroundtimer_timeout() -> void:
 		facing = "right"
 		speed = max_speed
 		basic_rotation()
+
+
+func _on_temporary_mood_timer_timeout() -> void:
+	#if leg_mode == "IDLE": leg_mode = "WALK"
+	#elif leg_mode == "WALK": leg_mode = "IDLE"
+	
+	#if arm_mode == "IDLE": arm_mode = "ATTACK1"
+	#elif arm_mode == "ATTACK1": arm_mode = "IDLE"
+	pass

@@ -20,12 +20,19 @@ func _physics_process(delta: float) -> void:
 	#pass#Check spawn so dont;' soawn in player
 	if type_of_part == "upper_arm1" or type_of_part == "upper_arm2":
 		if the_parent.arm_mode == "ATTACK1":
+			for child in get_children():
+				if child.has_method("move_randomly"):
+					child.nano_size_x = 150
+					child.nano_size_y = 150
 			if the_parent.facing == "left":
 				rotation += 0.1
 			elif the_parent.facing == "right":
 				rotation -= 0.1
-	
-	
+		else:
+			for child in get_children():
+				if child.has_method("move_randomly"):
+					child.nano_size_x = 150
+					child.nano_size_y = 40
 	
 func spawn_bots(count: int):
 	for i in count:
