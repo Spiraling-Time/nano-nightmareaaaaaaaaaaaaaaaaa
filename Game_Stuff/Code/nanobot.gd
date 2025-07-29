@@ -111,7 +111,7 @@ func _physics_process(delta: float) -> void:
 		
 		move_and_slide()
 		
-		if global_position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or global_position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or global_position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or global_position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
+		if abs(nano_thingIcantthinkofname.to_local(global_position).x) > nano_size_x or abs(nano_thingIcantthinkofname.to_local(global_position).y) > nano_size_y: #global_position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or global_position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or global_position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or global_position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
 			mode = "RETURN"
 		else: # global_position.distance_to(nano_thingIcantthinkofname.global_position) <= 101: #MAKE THIS ELSE IF THERE ARE PROBLEMS
 			mode = "AWAY"

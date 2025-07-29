@@ -25,7 +25,7 @@ var speed = max_speed
 var debugging: bool = false
 
 var overall_mode = "IDLE"
-var arm_mode = "ATTACK1"#"IDLE"
+var arm_mode# = "ATTACK1"#"IDLE"
 var leg_mode = "WALK"#"IDLE"
 
 var fall_speed = 1
