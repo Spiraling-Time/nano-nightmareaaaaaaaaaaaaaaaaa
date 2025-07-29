@@ -25,7 +25,7 @@ var speed = max_speed
 var debugging: bool = false
 
 var overall_mode = "IDLE"
-var arm_mode# = "ATTACK1"#"IDLE"
+var arm_mode = "ATTACK1"#"IDLE"
 var leg_mode = "WALK"#"IDLE"
 
 var fall_speed = 1
@@ -147,9 +147,9 @@ func basic_positions(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: bo
 	if facing == "left":
 		if a: torso.position = Vector2(25.0, 232.0)
 		if b: head.position = Vector2(-1.0, -297.0)
-		if c: upper_arm1.position = Vector2(-189.0, -148.0)
+		if c: upper_arm1.position = Vector2(-101.0, -148.0)
 		if d: lower_arm1.position = Vector2(-200.0, 26.0)
-		if e: upper_arm2.position = Vector2(139.0, -148.0)
+		if e: upper_arm2.position = Vector2(101.0, -148.0)
 		if f: lower_arm2.position = Vector2(200.0, 26.0)
 		if g: upper_leg1.position = Vector2(-109.0, 260.0)
 		if h: lower_leg1.position = Vector2(-94.0, 168.0)
@@ -158,9 +158,9 @@ func basic_positions(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: bo
 	else:
 		if a: torso.position = Vector2(-25.0, 232.0)
 		if b: head.position = Vector2(1.0, -297.0)
-		if c: upper_arm1.position = Vector2(189.0, -148.0)
+		if c: upper_arm1.position = Vector2(101.0, -148.0)
 		if d: lower_arm1.position = Vector2(200.0, 26.0)
-		if e: upper_arm2.position = Vector2(-139.0, -148.0)
+		if e: upper_arm2.position = Vector2(-101.0, -148.0)
 		if f: lower_arm2.position = Vector2(-200.0, 26.0)
 		if g: upper_leg1.position = Vector2(109.0, 260.0)
 		if h: lower_leg1.position = Vector2(94.0, 168.0)

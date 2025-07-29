@@ -23,6 +23,8 @@ var able_to_hurt: bool = false
 
 var alive: bool = false
 
+var offset = Vector2.ZERO
+
 @onready var timer = $Timer
 
 func _ready() -> void:
@@ -101,8 +103,9 @@ func _physics_process(delta: float) -> void:
 				rotation = 0.0
 				spin_dir = randi_range(0,1)
 		if mode == "RETURN":
+			var where_to_actually_go = nano_thingIcantthinkofname.to_global(offset)
 			var point_towards = Vector2.ZERO
-			point_towards = nano_thingIcantthinkofname.global_position - global_position
+			point_towards = where_to_actually_go - global_position
 			direction = point_towards.normalized()
 
 		#if direction == Vector2.ZERO: move_randomly()
@@ -111,7 +114,9 @@ func _physics_process(delta: float) -> void:
 		
 		move_and_slide()
 		
-		if abs(nano_thingIcantthinkofname.to_local(global_position).x) > nano_size_x or abs(nano_thingIcantthinkofname.to_local(global_position).y) > nano_size_y: #global_position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or global_position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or global_position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or global_position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
+		var boundaries = nano_thingIcantthinkofname.to_local(global_position)-offset
+		
+		if abs(boundaries.x) > nano_size_x or abs(boundaries.y) > nano_size_y: #global_position.x > nano_thingIcantthinkofname.global_position.x + nano_size_x or global_position.x < nano_thingIcantthinkofname.global_position.x - nano_size_x or global_position.y > nano_thingIcantthinkofname.global_position.y + nano_size_y or global_position.y < nano_thingIcantthinkofname.global_position.y - nano_size_y:
 			mode = "RETURN"
 		else: # global_position.distance_to(nano_thingIcantthinkofname.global_position) <= 101: #MAKE THIS ELSE IF THERE ARE PROBLEMS
 			mode = "AWAY"

@@ -25,9 +25,9 @@ func _physics_process(delta: float) -> void:
 					#child.nano_size_x = 150
 					#child.nano_size_y = 150
 			if the_parent.facing == "left":
-				rotation += 0.1
-			elif the_parent.facing == "right":
 				rotation -= 0.1
+			elif the_parent.facing == "right":
+				rotation += 0.1
 		#else:
 			#for child in get_children():
 				#if child.has_method("move_randomly"):
@@ -48,15 +48,19 @@ func spawn_bots(count: int):
 				new_bot.nano_size_y = 100
 
 			elif type_of_part == "upper_arm1":
+				new_bot.offset = Vector2(-150, -20)
 				new_bot.nano_size_x = 150
 				new_bot.nano_size_y = 40
 			elif type_of_part == "lower_arm1":
+				new_bot.offset = Vector2(-100, -20)
 				new_bot.nano_size_x = 150
 				new_bot.nano_size_y = 40
 			elif type_of_part == "upper_arm2":
+				new_bot.offset = Vector2(150, -20)
 				new_bot.nano_size_x = 150
 				new_bot.nano_size_y = 40
 			elif type_of_part == "lower_arm2":
+				new_bot.offset = Vector2(100, -20)
 				new_bot.nano_size_x = 150
 				new_bot.nano_size_y = 40
 			elif type_of_part == "upper_leg1":
