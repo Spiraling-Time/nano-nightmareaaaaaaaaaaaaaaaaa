@@ -1,6 +1,7 @@
 extends "res://Game_Stuff/Code/part.gd"
 
 func _ready() -> void:
+	the_parent = $"../../.."
 	type_of_part = "upper_leg2"
 	max_number_of_bots = 50 
 	

@@ -24,7 +24,9 @@ var speed = max_speed
 
 var debugging: bool = false
 
-var mode = "WALK"
+var overall_mode = "IDLE"
+var arm_mode = "IDLE"#"ATTACK1"
+var leg_mode = "IDLE"
 
 var fall_speed = 1
 
@@ -45,7 +47,7 @@ func _physics_process(delta: float) -> void:
 
 			
 	#print("nano: ", global_position.x, " player: ", $"../player".global_position.x)
-	if mode == "WALK":
+	if leg_mode == "WALK":
 		if leg_height_resetter.is_stopped():
 			reset_basic_position()
 			leg_height_resetter.start()
