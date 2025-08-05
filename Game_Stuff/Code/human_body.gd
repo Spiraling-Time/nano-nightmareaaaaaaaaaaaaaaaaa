@@ -57,8 +57,8 @@ func _physics_process(delta: float) -> void:
 			leg_height_resetter.start()
 			#print("restarting")
 		if !near_wall2.is_colliding():
-			position.x += speed
-
+			if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: position.x += speed*(upper_leg1.max_number_of_bots / upper_leg1.number_of_bots)*(upper_leg2.max_number_of_bots / upper_leg2.number_of_bots)
+			else: position.x += speed
 		if speed < 50 and speed > -50: speed = speed*1.01
 		if speed > 50: speed = 50
 		elif speed < -50: speed = -50
@@ -146,12 +146,12 @@ func _on_turnaroundtimer_timeout() -> void:
 		scale.x = -1
 		speed = max_speed
 		basic_rotation()
-	print(facing)
+	#print(facing)
 
 func _on_temporary_mood_timer_timeout() -> void:
 	#if leg_mode == "IDLE": leg_mode = "WALK"
 	#elif leg_mode == "WALK": leg_mode = "IDLE"
-	
+	#
 	#if arm_mode == "IDLE": arm_mode = "ATTACK1"
 	#elif arm_mode == "ATTACK1": arm_mode = "IDLE"
 	pass
