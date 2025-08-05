@@ -8,6 +8,8 @@ var type_of_part# = null
 var number_of_bots = 0
 var max_number_of_bots# = null #800
 var parts_able_to_hurt: bool = false
+var rotation_dir_thing = 0.1
+
 
 #ARMS {
 #var up_down_swing_attack = "Up"
@@ -19,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	#wprint(max_number_of_bots - number_of_bots)
 	if type_of_part == "upper_arm1" or type_of_part == "upper_arm2":
 		if the_parent.arm_mode == "ATTACK1":
-			rotation -= 0.1
+			rotation += rotation_dir_thing
 
 	
 func spawn_bots(count: int):

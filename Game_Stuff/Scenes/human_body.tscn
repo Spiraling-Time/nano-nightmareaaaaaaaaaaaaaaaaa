@@ -85,10 +85,10 @@ wait_time = 1.5
 one_shot = true
 
 [node name="turnaroundtimer" type="Timer" parent="."]
+wait_time = 0.1
 
-[node name="temporary mood timer" type="Timer" parent="."]
+[node name="mood timer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
 
 [connection signal="timeout" from="turnaroundtimer" to="." method="_on_turnaroundtimer_timeout"]
-[connection signal="timeout" from="temporary mood timer" to="." method="_on_temporary_mood_timer_timeout"]
+[connection signal="timeout" from="mood timer" to="." method="_on_temporary_mood_timer_timeout"]
