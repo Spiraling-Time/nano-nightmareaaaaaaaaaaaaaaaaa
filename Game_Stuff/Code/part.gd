@@ -67,6 +67,13 @@ func spawn_bots(count: int):
 			elif type_of_part == "lower_leg2":
 				new_bot.nano_size_x = 100
 				new_bot.nano_size_y = 40
+
+			elif type_of_part == "floor":
+				new_bot.nano_size_x = 5000
+				new_bot.nano_size_y = 5000
+
+
+
 			new_bot.position += Vector2(randi_range(-100,100),randi_range(-100,100))
 
 			add_child(new_bot)

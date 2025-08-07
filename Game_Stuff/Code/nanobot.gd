@@ -25,6 +25,8 @@ var alive: bool = false
 
 var offset = Vector2.ZERO
 
+@onready var world = get_tree().current_scene
+
 @onready var timer = $Timer
 
 func _ready() -> void:
@@ -94,7 +96,8 @@ func start():
 	
 func _physics_process(delta: float) -> void:
 	if alive:
-		if global_position.y >= 256.0: position.y-=1
+		
+		if world.world_type == "BOSS": if global_position.y >= 256.0: position.y-=1
 		
 		if randiii != 1:
 			if spin_dir == 0: rotation -= 0.2

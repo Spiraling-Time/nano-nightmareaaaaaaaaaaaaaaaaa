@@ -53,7 +53,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	else:
 		fire.visible = false
 	
-	if fast_turn.get_overlapping_bodies().size() >= 2:
+	if fast_turn.get_overlapping_bodies().size() >= 1:
 		if Input.is_action_pressed("left"): angular_velocity = -10*turn_power
 		elif Input.is_action_pressed("right"): angular_velocity = 10*turn_power
 	else:
