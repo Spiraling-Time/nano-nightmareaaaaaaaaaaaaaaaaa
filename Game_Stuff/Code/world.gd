@@ -1,5 +1,8 @@
 extends Node2D
 
+var world_type = "BOSS"
+
+
 func _ready() -> void:
 	randomize()
 

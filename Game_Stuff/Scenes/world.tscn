@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ckfp17b5mt727" path="res://Game_Stuff/Scenes/player.tscn" id="2_yp3uo"]
 [ext_resource type="Script" uid="uid://deesedq5ybbny" path="res://Game_Stuff/Code/game_ender.gd" id="5_72umx"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yp3uo"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0sqsw"]
 texture = ExtResource("1_oeug3")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -16,7 +16,7 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 7
 physics_layer_0/collision_mask = 7
-sources/0 = SubResource("TileSetAtlasSource_yp3uo")
+sources/0 = SubResource("TileSetAtlasSource_0sqsw")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_72umx"]
 texture = ExtResource("1_oeug3")

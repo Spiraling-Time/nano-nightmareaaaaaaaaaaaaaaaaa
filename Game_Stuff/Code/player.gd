@@ -30,8 +30,9 @@ var prev_pos = Vector2.ZERO
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	if position.y >= 248.0 or position.y <=-2808.0 or position.x <= -4352.0 or position.x >= 4488.0: #global_position.distance_to(prev_pos) >= 2000: #or position.y >= 248.0 or position.x <= -4352.0 or position.x >= 4488.0:
-		world.end_game()
+	if world.world_type == "BOSS":
+		if position.y >= 248.0 or position.y <=-2808.0 or position.x <= -4352.0 or position.x >= 4488.0: #global_position.distance_to(prev_pos) >= 2000: #or position.y >= 248.0 or position.x <= -4352.0 or position.x >= 4488.0:
+			world.end_game()
 	
 	prev_pos = global_position
 	
@@ -66,5 +67,6 @@ func damage(damage):
 
 
 func _on_turn_around_timer_timeout() -> void:
-	if global_position.x > nanoboss.global_position.x: bodysprite.flip_h = true
-	else: bodysprite.flip_h = false
+	if world.world_type == "BOSS":
+		if global_position.x > nanoboss.global_position.x: bodysprite.flip_h = true
+		else: bodysprite.flip_h = false
