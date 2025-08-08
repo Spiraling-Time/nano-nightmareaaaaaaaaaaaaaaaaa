@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	ammo_ui.frame = ammo
 	if world.world_type == "BOSS":
-		if position.y >= 1712 or position.y <= -1712 or position.x <= -4960 or position.x >= 4960:
+		if position.y >= 1752.0 or position.y <= -1752.0 or position.x <= -4888.0 or position.x >= 4888.0:
 			world.end_game()
 	
 	prev_pos = global_position

@@ -119,7 +119,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			position.y -= fall_speed
 			fall_speed = 1
-	if position.y >= 936.0: position.y = 936.0
+	if position.y >= 1008.0: position.y = 1008.0
 
 func reset_basic_position():
 	basic_positions(true, true, true, true, true, true, true, true, true, true)

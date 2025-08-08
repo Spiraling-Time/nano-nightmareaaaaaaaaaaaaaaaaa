@@ -35,7 +35,7 @@ tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_72umx")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sqsw"]
-size = Vector2(9728, 128)
+size = Vector2(9728, 96)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_yy1qi")
@@ -45,7 +45,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_0sqsw")
 
 [node name="player" parent="." instance=ExtResource("2_yp3uo")]
-position = Vector2(-1160, 1536)
+position = Vector2(-1512, 1576)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 limit_left = -4960
@@ -68,7 +68,7 @@ grow_horizontal = 2
 label_settings = SubResource("LabelSettings_v1ae1")
 
 [node name="human_body" parent="." instance=ExtResource("2_th3ow")]
-position = Vector2(320, 936)
+position = Vector2(320, 816)
 
 [node name="Sprite2D" type="Sprite2D" parent="human_body/body/torso" index="0"]
 visible = false
@@ -98,7 +98,7 @@ collision_layer = 519
 collision_mask = 519
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 1720)
+position = Vector2(0, 1736)
 shape = SubResource("RectangleShape2D_0sqsw")
 
 [node name="Time left" type="Timer" parent="."]
