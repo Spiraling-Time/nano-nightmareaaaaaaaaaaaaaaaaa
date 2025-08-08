@@ -7,6 +7,8 @@ extends Node2D
 
 var the_parent
 
+
+
 var type_of_part# = null
 var number_of_bots = 0
 var max_number_of_bots# = null #800
@@ -18,9 +20,13 @@ var rotation_dir_thing = 6.0
 #var up_down_swing_attack = "Up"
 #}
 
+func _ready() -> void:
+	await get_tree().process_frame
+	spawn_bots(max_number_of_bots)
+	
 func _physics_process(delta: float) -> void:
-	if max_number_of_bots - number_of_bots >= 0:
-		spawn_bots(1)
+	#if max_number_of_bots - number_of_bots >= 0:
+		#spawn_bots(1)
 	#wprint(max_number_of_bots - number_of_bots)
 	if type_of_part == "upper_arm1" or type_of_part == "upper_arm2":
 		if the_parent.arm_mode == "ATTACK1":

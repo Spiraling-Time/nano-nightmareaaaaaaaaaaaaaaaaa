@@ -90,5 +90,17 @@ wait_time = 0.1
 [node name="mood timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="respawn nanobots" type="Timer" parent="."]
+
 [connection signal="timeout" from="turnaroundtimer" to="." method="_on_turnaroundtimer_timeout"]
 [connection signal="timeout" from="mood timer" to="." method="_on_temporary_mood_timer_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso" method="_on_respawn_nanobots_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso/head" method="_on_respawn_nanobots_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso/upper_arm1" method="_on_respawn_nanobots_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso/upper_arm1/lower_arm1" method="_on_respawn_nanobots_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso/upper_arm2" method="_on_respawn_nanobots_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso/upper_arm2/lower_arm2" method="_on_respawn_nanobots_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso/upper_leg1" method="_on_respawn_nanobots_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso/upper_leg1/lower_leg1" method="_on_respawn_nanobots_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso/upper_leg2" method="_on_respawn_nanobots_timeout"]
+[connection signal="timeout" from="respawn nanobots" to="body/torso/upper_leg2/lower_leg2" method="_on_respawn_nanobots_timeout"]

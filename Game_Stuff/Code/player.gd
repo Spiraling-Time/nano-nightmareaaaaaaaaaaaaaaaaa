@@ -98,7 +98,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			new_laser.origin_point = new_laser.position
 			get_tree().current_scene.add_child(new_laser)
 			ammo -= 1
-			for i in 5: await get_tree().process_frame
+			for i in 5: if get_tree().process_frame: await get_tree().process_frame
 			sprite_close_laser.visible = false
 			area_close_laser.monitoring = false
 		

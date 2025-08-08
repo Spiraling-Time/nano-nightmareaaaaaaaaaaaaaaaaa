@@ -24,6 +24,8 @@ extends Node2D
 
 @onready var mood_timer = $"mood timer"
 
+@onready var spawn_timer = $"respawn nanobots"
+
 var max_speed = 0
 var speed = max_speed
 
@@ -50,6 +52,7 @@ func _ready() -> void:
 	turn_around_timer.start()
 	turn_around_timer.timeout
 	mood_timer.start()
+	spawn_timer.start()
 	mood_timer.timeout
 	max_speed = 10
 
