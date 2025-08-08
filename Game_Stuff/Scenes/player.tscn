@@ -112,6 +112,7 @@ texture = ExtResource("2_vnf7s")
 vframes = 3
 
 [node name="close_laser" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("3_kinf7")
 
 [node name="fire" type="Sprite2D" parent="."]
