@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Nano-Nightmare"
-run/main_scene="uid://bfwdkhhiryb43"
+run/main_scene="uid://cs4hp81c0js35"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://Game_Stuff/Assets/icon.svg"
 

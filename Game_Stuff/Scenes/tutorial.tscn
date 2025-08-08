@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cs4hp81c0js35"]
+[gd_scene load_steps=19 format=4 uid="uid://cs4hp81c0js35"]
 
 [ext_resource type="Script" uid="uid://d27e8yy4d8wg1" path="res://Game_Stuff/Code/tutorial.gd" id="1_gs8bk"]
 [ext_resource type="Texture2D" uid="uid://drobw523he8vc" path="res://Game_Stuff/Assets/Nanoboss Stadium 001.png" id="1_qqkbl"]
@@ -47,6 +47,9 @@ size = Vector2(9988, 128)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ohqmt"]
 radius = 19.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sutpw"]
+size = Vector2(1064, 1705)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_gs8bk")
@@ -163,3 +166,9 @@ modulate = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ohqmt")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(3932, 812.5)
+shape = SubResource("RectangleShape2D_sutpw")
