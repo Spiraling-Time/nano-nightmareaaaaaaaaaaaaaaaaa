@@ -26,6 +26,8 @@ extends Node2D
 
 @onready var spawn_timer = $"respawn nanobots"
 
+var lowest = 1000.0
+
 var max_speed = 0
 var speed = max_speed
 
@@ -111,15 +113,14 @@ func _physics_process(delta: float) -> void:
 			
 			
 			
-			
+	standing1.force_raycast_update()
+	standing2.force_raycast_update()
 	if !standing1.is_colliding() and !standing2.is_colliding():
 		position.y += fall_speed * delta *60
-		if !standing1.is_colliding() and !standing2.is_colliding():
-			fall_speed = fall_speed*1.1
-		else:
-			position.y -= fall_speed
-			fall_speed = 1
-	if position.y >= 1008.0: position.y = 1008.0
+		fall_speed = fall_speed*1.1			
+	else:
+		fall_speed = 1
+	if position.y >= lowest: position.y = lowest
 
 func reset_basic_position():
 	basic_positions(true, true, true, true, true, true, true, true, true, true)
@@ -168,22 +169,28 @@ func _on_turnaroundtimer_timeout() -> void:
 	#print(facing)
 
 func _on_temporary_mood_timer_timeout() -> void:
-	if abs(global_position.x-player.global_position.x) <= 350:
-		leg_mode = "IDLE"
-		reset_basic_position()
-		basic_rotation(false, false, false, false, false, false, true, false, true, false)
-	elif abs(global_position.x-player.global_position.x) <= 650:
-		max_speed = 5
-		leg_mode = "WALK"
-	else:
-		max_speed = 10
-		leg_mode = "WALK"
-	
-	if arm_mode == "IDLE":
-		arm_mode = "ATTACK1"
-	elif arm_mode == "ATTACK1":
-		if randi_range(0, 1) == 0: upper_arm1.rotation_dir_thing = upper_arm1.rotation_dir_thing * -1
-		if randi_range(0, 1) == 0: upper_arm2.rotation_dir_thing = upper_arm2.rotation_dir_thing * -1
+	if overall_mode == "IDLE":
+		if abs(global_position.x-player.global_position.x) <= 350:
+			leg_mode = "IDLE"
+			reset_basic_position()
+			basic_rotation(false, false, false, false, false, false, true, false, true, false)
+		elif abs(global_position.x-player.global_position.x) <= 650:
+			if max_speed<= 5:
+				max_speed = 5
+				leg_mode = "WALK"
+			else:
+				max_speed = 10
+				overall_mode = "SLIDE"
+				#position.y += 300
+		else:
+			max_speed = 10
+			leg_mode = "WALK"
+		
+		if arm_mode == "IDLE":
+			arm_mode = "ATTACK1"
+		elif arm_mode == "ATTACK1":
+			if randi_range(0, 1) == 0: upper_arm1.rotation_dir_thing = upper_arm1.rotation_dir_thing * -1
+			if randi_range(0, 1) == 0: upper_arm2.rotation_dir_thing = upper_arm2.rotation_dir_thing * -1
 		
 		
 	#print("leg_mode: ", leg_mode, " leg_speed: ", max_speed)
