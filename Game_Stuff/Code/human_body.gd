@@ -59,68 +59,77 @@ func _ready() -> void:
 	max_speed = 10
 
 func _physics_process(delta: float) -> void:
+	#print(rotation_degrees)
+	if overall_mode == "IDLE":		
+		#print("nano: ", global_position.x, " player: ", $"../player".global_position.x)
+		if leg_mode == "WALK":
+			if leg_height_resetter.is_stopped():
+				reset_basic_position()
+				leg_height_resetter.start()
+				#print("restarting")
+			if !near_wall2.is_colliding():
+				if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: position.x += delta*60*speed*(upper_leg1.max_number_of_bots / upper_leg1.number_of_bots)*(upper_leg2.max_number_of_bots / upper_leg2.number_of_bots)
+				else: position.x += speed * delta * 60
+			if speed < 50 and speed > -50: speed = speed*1.01
+			if speed > 50: speed = 50
+			elif speed < -50: speed = -50
+			basic_positions(false, false, false, false, false, false, false, true, false, true)
+			if leg1_movement == "Forward":
+				upper_leg1.position.y += 1
+				upper_leg1.rotation += 0.2
+				#upper_leg2.rotation += -0.1
+				#print(upper_leg1.rotation)
+				if upper_leg1.rotation >= 2:
+					leg1_movement = "Backward"
 
-			
-	#print("nano: ", global_position.x, " player: ", $"../player".global_position.x)
-	if leg_mode == "WALK":
-		if leg_height_resetter.is_stopped():
-			reset_basic_position()
-			leg_height_resetter.start()
-			#print("restarting")
-		if !near_wall2.is_colliding():
-			if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: position.x += delta*60*speed*(upper_leg1.max_number_of_bots / upper_leg1.number_of_bots)*(upper_leg2.max_number_of_bots / upper_leg2.number_of_bots)
-			else: position.x += speed * delta * 60
-		if speed < 50 and speed > -50: speed = speed*1.01
-		if speed > 50: speed = 50
-		elif speed < -50: speed = -50
-		basic_positions(false, false, false, false, false, false, false, true, false, true)
-		if leg1_movement == "Forward":
-			upper_leg1.position.y += 1
-			upper_leg1.rotation += 0.2
-			#upper_leg2.rotation += -0.1
-			#print(upper_leg1.rotation)
-			if upper_leg1.rotation >= 2:
-				leg1_movement = "Backward"
+			elif leg1_movement == "Backward":
+				upper_leg1.position.y -= 2
+				upper_leg1.rotation += -0.2
+				#upper_leg2.rotation += 0.1
+				if upper_leg1.rotation <= -0.6:
+					leg1_movement = "Forward"
 
-		elif leg1_movement == "Backward":
-			upper_leg1.position.y -= 2
-			upper_leg1.rotation += -0.2
-			#upper_leg2.rotation += 0.1
-			if upper_leg1.rotation <= -0.6:
-				leg1_movement = "Forward"
+						
+			if leg2_movement == "Forward":
+				upper_leg2.position.y -= 2
+				upper_leg2.rotation += 0.2
+				#upper_leg2.rotation += -0.1
+				#print(upper_leg1.rotation)
+				if upper_leg2.rotation >= 0.6:
+					leg2_movement = "Backward"
 
-					
-		if leg2_movement == "Forward":
-			upper_leg2.position.y -= 2
-			upper_leg2.rotation += 0.2
-			#upper_leg2.rotation += -0.1
-			#print(upper_leg1.rotation)
-			if upper_leg2.rotation >= 0.6:
-				leg2_movement = "Backward"
+						
+			elif leg2_movement == "Backward":
+				upper_leg2.position.y += 1
+				upper_leg2.rotation += -0.2
+				#upper_leg2.rotation += 0.1
+				if upper_leg2.rotation <= -2:
+					leg2_movement = "Forward"
 
-					
-		elif leg2_movement == "Backward":
-			upper_leg2.position.y += 1
-			upper_leg2.rotation += -0.2
-			#upper_leg2.rotation += 0.1
-			if upper_leg2.rotation <= -2:
-				leg2_movement = "Forward"
+						
+						
+			#print("leg1_movement: ", leg1_movement, " leg2_movement: ", leg2_movement)
+			#print("leg1_rotation: ", upper_leg1.rotation, " leg2_rotation: ", upper_leg2.rotation)
 
-					
-					
-		#print("leg1_movement: ", leg1_movement, " leg2_movement: ", leg2_movement)
-		#print("leg1_rotation: ", upper_leg1.rotation, " leg2_rotation: ", upper_leg2.rotation)
-			
-			
-			
-	standing1.force_raycast_update()
-	standing2.force_raycast_update()
-	if !standing1.is_colliding() and !standing2.is_colliding():
-		position.y += fall_speed * delta *60
-		fall_speed = fall_speed*1.1			
-	else:
-		fall_speed = 1
-	if position.y >= lowest: position.y = lowest
+		standing1.force_raycast_update()
+		standing2.force_raycast_update()
+		if !standing1.is_colliding() and !standing2.is_colliding():
+			position.y += fall_speed * delta *60
+			fall_speed = fall_speed*1.1			
+		else:
+			fall_speed = 1
+		if position.y >= lowest: position.y = lowest
+	
+	elif overall_mode == "SLIDE":
+		position.x += speed * delta * 60
+		if abs(global_position.x+4960) <= 300:
+			mood_timer.stop()
+			_on_temporary_mood_timer_timeout()
+		elif abs(global_position.x-4960) <= 300:
+			mood_timer.stop()
+			_on_temporary_mood_timer_timeout()
+
+
 
 func reset_basic_position():
 	basic_positions(true, true, true, true, true, true, true, true, true, true)
@@ -155,44 +164,62 @@ func basic_rotation(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: boo
 
 
 func _on_turnaroundtimer_timeout() -> void:
-	if global_position.x > player.global_position.x:
-		if !facing == "left":
-			facing = "left"
-			scale.x = 1
-			speed = max_speed*-1
-			basic_rotation(false, false, false, false, false, false, true, false, true, false)
-	elif !facing == "right":
-		facing = "right"
-		scale.x = -1
-		speed = max_speed
-		basic_rotation(false, false, false, false, false, false, true, false, true, false)
-	#print(facing)
+	if overall_mode == "IDLE":
+		if abs(global_position.x-player.global_position.x) >= 100:
+			if global_position.x > player.global_position.x:
+				if !facing == "left":
+					facing = "left"
+					scale.x = 1
+					speed = max_speed*-1
+					basic_rotation(false, false, false, false, false, false, true, false, true, false)
+			elif !facing == "right":
+				facing = "right"
+				scale.x = -1
+				speed = max_speed
+				basic_rotation(false, false, false, false, false, false, true, false, true, false)
+			#print(facing)
 
 func _on_temporary_mood_timer_timeout() -> void:
 	if overall_mode == "IDLE":
-		if abs(global_position.x-player.global_position.x) <= 350:
-			leg_mode = "IDLE"
-			reset_basic_position()
-			basic_rotation(false, false, false, false, false, false, true, false, true, false)
+		mood_timer.wait_time = 0.1
+		if abs(global_position.x-player.global_position.x) <= 300:
+			max_speed = 5
+			leg_mode = "WALK"
 		elif abs(global_position.x-player.global_position.x) <= 650:
-			if max_speed<= 5:
-				max_speed = 5
-				leg_mode = "WALK"
-			else:
+			if abs(global_position.x+4960) >= 300 and abs(global_position.x-4960) >= 300 and randi_range(1,3) == 1:
 				max_speed = 10
 				overall_mode = "SLIDE"
-				#position.y += 300
+				if facing == "left": rotation_degrees = 90.0
+				elif facing == "right": rotation_degrees = -90.0
+				position.y = 1480.0
+				upper_leg1.position.x += 100
+				#print(position.y)
+				mood_timer.wait_time = 1.0
+			else:
+				max_speed = 5
+				leg_mode = "WALK"
 		else:
 			max_speed = 10
 			leg_mode = "WALK"
-		
+	
+
+
+
 		if arm_mode == "IDLE":
 			arm_mode = "ATTACK1"
 		elif arm_mode == "ATTACK1":
 			if randi_range(0, 1) == 0: upper_arm1.rotation_dir_thing = upper_arm1.rotation_dir_thing * -1
 			if randi_range(0, 1) == 0: upper_arm2.rotation_dir_thing = upper_arm2.rotation_dir_thing * -1
-		
+		mood_timer.start()	
 		
 	#print("leg_mode: ", leg_mode, " leg_speed: ", max_speed)
 	#print("arm_mode: ", arm_mode)
 	#print(abs(global_position.x-player.global_position.x))
+
+	elif overall_mode == "SLIDE":
+		rotation = 0
+		max_speed = 5
+		overall_mode = "IDLE"
+		basic_positions(false, false, false, false, false, false, true, false, true, false)
+		mood_timer.wait_time = 0.1
+		mood_timer.start()	

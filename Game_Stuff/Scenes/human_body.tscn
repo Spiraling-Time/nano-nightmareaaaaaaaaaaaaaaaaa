@@ -92,6 +92,8 @@ one_shot = true
 wait_time = 0.1
 
 [node name="mood timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [node name="respawn nanobots" type="Timer" parent="."]
 
