@@ -2,6 +2,7 @@ extends Node2D
 
 var world_type = "BOSS"
 
+var total_nanobots = 0
 
 func _ready() -> void:
 	randomize()

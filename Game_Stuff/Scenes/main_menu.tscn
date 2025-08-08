@@ -1,11 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfwdkhhiryb43"]
+[gd_scene load_steps=3 format=3 uid="uid://bfwdkhhiryb43"]
 
 [ext_resource type="Script" uid="uid://b63x4a8yg5klc" path="res://Game_Stuff/Code/main_menu.gd" id="1_da4q5"]
+[ext_resource type="Texture2D" uid="uid://dcuovdtrdexi8" path="res://Game_Stuff/Assets/Main Menu.png" id="2_4v5oo"]
 
 [node name="Main_menu" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_da4q5")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4v5oo")
+vframes = 3
+
+[node name="main buttons" type="Node2D" parent="."]
+
+[node name="Controls" type="Button" parent="main buttons"]
+offset_left = -121.0
+offset_top = -100.0
+offset_right = 121.0
+offset_bottom = 32.0
+flat = true
+
+[node name="Play" type="Button" parent="main buttons"]
+offset_left = -121.0
+offset_top = 63.0
+offset_right = 121.0
+offset_bottom = 195.0
+flat = true
+
+[node name="Credits" type="Button" parent="main buttons"]
+offset_left = -121.0
+offset_top = 237.0
+offset_right = 121.0
+offset_bottom = 369.0
+flat = true
+
+[node name="Exit" type="Button" parent="."]
+visible = false
+offset_left = -495.0
+offset_top = -216.0
+offset_right = 498.0
+offset_bottom = 320.0
+flat = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="pressed" from="main buttons/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="main buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="main buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
