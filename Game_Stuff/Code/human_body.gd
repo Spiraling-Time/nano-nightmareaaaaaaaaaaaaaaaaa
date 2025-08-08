@@ -120,14 +120,7 @@ func _physics_process(delta: float) -> void:
 			fall_speed = 1
 		if position.y >= lowest: position.y = lowest
 	
-	elif overall_mode == "SLIDE":
-		position.x += speed * delta * 60
-		if abs(global_position.x+4960) <= 300:
-			mood_timer.stop()
-			_on_temporary_mood_timer_timeout()
-		elif abs(global_position.x-4960) <= 300:
-			mood_timer.stop()
-			_on_temporary_mood_timer_timeout()
+
 
 
 
@@ -182,22 +175,13 @@ func _on_turnaroundtimer_timeout() -> void:
 func _on_temporary_mood_timer_timeout() -> void:
 	if overall_mode == "IDLE":
 		mood_timer.wait_time = 0.1
-		if abs(global_position.x-player.global_position.x) <= 300:
+		if abs(global_position.x-player.global_position.x) <= 350:
+			leg_mode = "IDLE"
+			reset_basic_position()
+			basic_rotation(false, false, false, false, false, false, true, false, true, false)
+		elif abs(global_position.x-player.global_position.x) <= 650:
 			max_speed = 5
 			leg_mode = "WALK"
-		elif abs(global_position.x-player.global_position.x) <= 650:
-			if abs(global_position.x+4960) >= 300 and abs(global_position.x-4960) >= 300 and randi_range(1,3) == 1:
-				max_speed = 10
-				overall_mode = "SLIDE"
-				if facing == "left": rotation_degrees = 90.0
-				elif facing == "right": rotation_degrees = -90.0
-				position.y = 1480.0
-				upper_leg1.position.x += 100
-				#print(position.y)
-				mood_timer.wait_time = 1.0
-			else:
-				max_speed = 5
-				leg_mode = "WALK"
 		else:
 			max_speed = 10
 			leg_mode = "WALK"
@@ -215,11 +199,3 @@ func _on_temporary_mood_timer_timeout() -> void:
 	#print("leg_mode: ", leg_mode, " leg_speed: ", max_speed)
 	#print("arm_mode: ", arm_mode)
 	#print(abs(global_position.x-player.global_position.x))
-
-	elif overall_mode == "SLIDE":
-		rotation = 0
-		max_speed = 5
-		overall_mode = "IDLE"
-		basic_positions(false, false, false, false, false, false, true, false, true, false)
-		mood_timer.wait_time = 0.1
-		mood_timer.start()	
