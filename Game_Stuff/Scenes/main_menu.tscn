@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfwdkhhiryb43"]
 
 [ext_resource type="Script" uid="uid://b63x4a8yg5klc" path="res://Game_Stuff/Code/main_menu.gd" id="1_da4q5"]
-[ext_resource type="Texture2D" uid="uid://dcuovdtrdexi8" path="res://Game_Stuff/Assets/Main Menu.png" id="2_4v5oo"]
+[ext_resource type="Texture2D" uid="uid://b5ys2o7trhm7r" path="res://Game_Stuff/Assets/Main menu.png" id="2_4v5oo"]
 
 [node name="Main_menu" type="Node2D"]
 process_mode = 3

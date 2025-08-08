@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=4 uid="uid://cs4hp81c0js35"]
 
 [ext_resource type="Script" uid="uid://d27e8yy4d8wg1" path="res://Game_Stuff/Code/tutorial.gd" id="1_gs8bk"]
-[ext_resource type="Texture2D" uid="uid://drobw523he8vc" path="res://Game_Stuff/Assets/Nanoboss Stadium 001.png" id="1_qqkbl"]
+[ext_resource type="Texture2D" uid="uid://dm6rmsqff5riy" path="res://Game_Stuff/Assets/Nanoboss Stadium 001.png" id="1_qqkbl"]
 [ext_resource type="PackedScene" uid="uid://ckfp17b5mt727" path="res://Game_Stuff/Scenes/player.tscn" id="2_gs8bk"]
 [ext_resource type="Texture2D" uid="uid://cgijc0wr0jvt1" path="res://Game_Stuff/Assets/icon.svg" id="4_bjmul"]
 [ext_resource type="Script" uid="uid://dseq7n2aigsxh" path="res://Game_Stuff/Code/nanowall.gd" id="5_ohqmt"]
