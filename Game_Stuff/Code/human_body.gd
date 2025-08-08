@@ -63,8 +63,8 @@ func _physics_process(delta: float) -> void:
 			leg_height_resetter.start()
 			#print("restarting")
 		if !near_wall2.is_colliding():
-			if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: position.x += speed*(upper_leg1.max_number_of_bots / upper_leg1.number_of_bots)*(upper_leg2.max_number_of_bots / upper_leg2.number_of_bots)
-			else: position.x += speed
+			if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: position.x += delta*60*speed*(upper_leg1.max_number_of_bots / upper_leg1.number_of_bots)*(upper_leg2.max_number_of_bots / upper_leg2.number_of_bots)
+			else: position.x += speed * delta * 60
 		if speed < 50 and speed > -50: speed = speed*1.01
 		if speed > 50: speed = 50
 		elif speed < -50: speed = -50
@@ -110,7 +110,7 @@ func _physics_process(delta: float) -> void:
 			
 			
 	if !standing1.is_colliding() and !standing2.is_colliding():
-		position.y += fall_speed
+		position.y += fall_speed * delta *60
 		if !standing1.is_colliding() and !standing2.is_colliding():
 			fall_speed = fall_speed*1.1
 		else:

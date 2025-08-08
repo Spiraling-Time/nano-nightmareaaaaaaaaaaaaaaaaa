@@ -9,7 +9,7 @@ var nano_thingIcantthinkofname
 
 var direction = Vector2.ZERO
 
-var speed = 100
+var speed = 6000
 
 var mode = "AWAY"
 
@@ -97,11 +97,11 @@ func start():
 func _physics_process(delta: float) -> void:
 	if alive:
 		
-		if world.world_type == "BOSS": if global_position.y >= 256.0: position.y-=1
+		if world.world_type == "BOSS": if global_position.y >= 256.0: position.y-= 60 *delta
 		
 		if randiii != 1:
-			if spin_dir == 0: rotation -= 0.2
-			else: rotation += 0.2
+			if spin_dir == 0: rotation -= 0.2*delta*60
+			else: rotation += 0.2*delta*60
 			if rotation > 360.0 or rotation < -360.0:
 				rotation = 0.0
 				spin_dir = randi_range(0,1)
@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 			direction = point_towards.normalized()
 
 		#if direction == Vector2.ZERO: move_randomly()
-		velocity = direction * speed
+		velocity = direction * speed * delta
 
 		
 		move_and_slide()
@@ -155,5 +155,5 @@ func _on_timer_timeout() -> void:
 		move_randomly()
 
 func delete_self():
-	
+	world.total_nanobots -= 1
 	queue_free()
