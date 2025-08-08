@@ -97,7 +97,7 @@ func start():
 func _physics_process(delta: float) -> void:
 	if alive:
 		
-		if world.world_type == "BOSS": if global_position.y >= 256.0: position.y-= 60 *delta
+		if world.world_type == "BOSS": if global_position.y >= 1712: position.y-= 60 *delta
 		
 		if randiii != 1:
 			if spin_dir == 0: rotation -= 0.2*delta*60

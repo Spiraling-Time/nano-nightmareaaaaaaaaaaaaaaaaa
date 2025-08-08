@@ -36,8 +36,10 @@ var ammo = 0
 @onready var ammo_ui = $"Ammo and stuff/Sprite2D"
 @onready var labeltotalnano = $"Ammo and stuff/TotalNANOS"
 @onready var sprite_close_laser = $close_laser
-@onready var blast_close_laser = $Area2D3/CollisionShape2D
-@onready var area_close_laser = $Area2D3
+@onready var right_area_close_laser = $Area2D3
+@onready var left_area_close_laser = $Area2D4
+
+
 
 func _physics_process(delta: float) -> void:
 	labeltotalnano.text = "%d" % world.total_nanobots
@@ -45,7 +47,7 @@ func _physics_process(delta: float) -> void:
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	ammo_ui.frame = ammo
 	if world.world_type == "BOSS":
-		if position.y >= 248.0 or position.y <=-2808.0 or position.x <= -4352.0 or position.x >= 4488.0: #global_position.distance_to(prev_pos) >= 2000: #or position.y >= 248.0 or position.x <= -4352.0 or position.x >= 4488.0:
+		if position.y >= 1712 or position.y <= -1712 or position.x <= -4960 or position.x >= 4960:
 			world.end_game()
 	
 	prev_pos = global_position
@@ -62,12 +64,16 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 						next_ammo = 0
 						if ammo < 9: ammo += 1
 						if ammo > 9: ammo = 9
-
-	for bodies in area_close_laser.get_overlapping_bodies():
-		if bodies != self and bodies.has_method("delete_self"):
-			bodies.get_parent().number_of_bots -= 1
-			bodies.delete_self()
-
+	if right_area_close_laser.monitoring:
+		for bodies in right_area_close_laser.get_overlapping_bodies():
+			if bodies != self and bodies.has_method("delete_self"):
+				bodies.get_parent().number_of_bots -= 1
+				bodies.delete_self()
+	elif left_area_close_laser.monitoring:
+		for bodies in left_area_close_laser.get_overlapping_bodies():
+			if bodies != self and bodies.has_method("delete_self"):
+				bodies.get_parent().number_of_bots -= 1
+				bodies.delete_self()
 
 
 	
@@ -90,7 +96,8 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		if ammo > 0:
 			sprite_close_laser.visible = true
-			area_close_laser.monitoring = true
+			if bodysprite.flip_h: right_area_close_laser.monitoring = true
+			else: left_area_close_laser.monitoring = true
 			var new_laser = laser.instantiate()
 			new_laser.rotation = rotation
 			if bodysprite.flip_h: new_laser.position = position + Vector2(-52.0, -42.0).rotated(new_laser.rotation)
@@ -100,7 +107,8 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			ammo -= 1
 			for i in 5: if get_tree().process_frame: await get_tree().process_frame
 			sprite_close_laser.visible = false
-			area_close_laser.monitoring = false
+			left_area_close_laser.monitoring = false
+			right_area_close_laser.monitoring = false
 		
 
 func damage(damage):
@@ -112,8 +120,12 @@ func _on_turn_around_timer_timeout() -> void:
 		if global_position.x > nanoboss.global_position.x:
 			bodysprite.flip_h = true
 			sprite_close_laser.flip_h = true
-			if blast_close_laser.position.x > 0: blast_close_laser.position.x = -blast_close_laser.position.x
+			if right_area_close_laser.monitoring:
+				right_area_close_laser.monitoring = false
+				left_area_close_laser.monitoring = true
 		else:
 			bodysprite.flip_h = false
 			sprite_close_laser.flip_h = false
-			if blast_close_laser.position.x < 0: blast_close_laser.position.x = -blast_close_laser.position.x
+			if left_area_close_laser.monitoring:
+				left_area_close_laser.monitoring = false
+				right_area_close_laser.monitoring = true
