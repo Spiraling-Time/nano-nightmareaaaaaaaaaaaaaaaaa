@@ -111,7 +111,6 @@ shape = SubResource("RectangleShape2D_kinf7")
 [node name="Area2D3" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
-monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D3"]
 position = Vector2(29, -11)
@@ -120,7 +119,6 @@ polygon = PackedVector2Array(0, 0, 197, -49, 197, 72, 0, 24)
 [node name="Area2D4" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
-monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D4"]
 position = Vector2(0, -11)

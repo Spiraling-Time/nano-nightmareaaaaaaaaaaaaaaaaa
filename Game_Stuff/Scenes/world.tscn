@@ -1,11 +1,17 @@
-[gd_scene load_steps=12 format=4 uid="uid://dxerlijo04el8"]
+[gd_scene load_steps=13 format=4 uid="uid://dxerlijo04el8"]
 
 [ext_resource type="Texture2D" uid="uid://cgijc0wr0jvt1" path="res://Game_Stuff/Assets/icon.svg" id="1_oeug3"]
 [ext_resource type="Script" uid="uid://cndfe8p3pnnfc" path="res://Game_Stuff/Code/world.gd" id="1_yy1qi"]
 [ext_resource type="Texture2D" uid="uid://dd3b5cncb3vha" path="res://Game_Stuff/Assets/Nanoboss Stadium 002.png" id="2_0sqsw"]
 [ext_resource type="PackedScene" uid="uid://bqcy5ertujnu7" path="res://Game_Stuff/Scenes/human_body.tscn" id="2_th3ow"]
 [ext_resource type="PackedScene" uid="uid://ckfp17b5mt727" path="res://Game_Stuff/Scenes/player.tscn" id="2_yp3uo"]
-[ext_resource type="Script" uid="uid://deesedq5ybbny" path="res://Game_Stuff/Code/game_ender.gd" id="5_72umx"]
+[ext_resource type="FontFile" uid="uid://cpe2y3dsvf8jo" path="res://Game_Stuff/Font/QuirkyRobot.ttf" id="4_cqm8y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v1ae1"]
+font = ExtResource("4_cqm8y")
+font_size = 70
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0sqsw"]
 texture = ExtResource("1_oeug3")
@@ -48,6 +54,19 @@ limit_right = 4960
 limit_bottom = 1712
 limit_smoothed = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="player"]
+
+[node name="Time Left" type="Label" parent="player/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_top = 10.0
+offset_right = 36.0
+offset_bottom = 80.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_v1ae1")
+
 [node name="human_body" parent="." instance=ExtResource("2_th3ow")]
 position = Vector2(320, 936)
 
@@ -74,10 +93,6 @@ scale = Vector2(0.5, 0.5)
 tile_map_data = PackedByteArray("AAAHAPn/AAAAAAAAAAAHAPr/AAAAAAAAAAAHAPv/AAAAAAAAAAAHAPz/AAAAAAAAAAAHAP3/AAAAAAAAAAAHAP7/AAAAAAAAAAAIAPj/AAAAAAAAAAAIAPn/AAAAAAAAAAAIAPr/AAAAAAAAAAAIAPv/AAAAAAAAAAAIAPz/AAAAAAAAAAAIAP3/AAAAAAAAAAAIAP7/AAAAAAAAAAAJAPn/AAAAAAAAAAAJAPr/AAAAAAAAAAAJAPv/AAAAAAAAAAAJAPz/AAAAAAAAAAAJAP3/AAAAAAAAAAAJAP7/AAAAAAAAAAAHAPj/AAAAAAAAAAAJAPj/AAAAAAAAAAAGAPz/AAAAAAAAAAAFAPz/AAAAAAAAAAAEAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAKAPz/AAAAAAAAAAAKAP3/AAAAAAAAAAAGAP7/AAAAAAAAAAAHAP//AAAAAAAAAAAIAP//AAAAAAAAAAAJAP//AAAAAAAAAAAHAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAAAAAALAAIAAAAAAAAAAAAKAAIAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAGAPj/AAAAAAAAAAAGAPn/AAAAAAAAAAAGAPr/AAAAAAAAAAAKAPr/AAAAAAAAAAAKAPn/AAAAAAAAAAAKAPj/AAAAAAAAAAAGAPf/AAAAAAAAAAAHAPf/AAAAAAAAAAAIAPf/AAAAAAAAAAAJAPf/AAAAAAAAAAAKAPf/AAAAAAAAAAAHAPb/AAAAAAAAAAAIAPb/AAAAAAAAAAAJAPb/AAAAAAAAAAAFAAIAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_0sqsw")
 
-[node name="Game_Ender" type="Node2D" parent="."]
-process_mode = 2
-script = ExtResource("5_72umx")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 519
 collision_mask = 519
@@ -85,5 +100,10 @@ collision_mask = 519
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 1720)
 shape = SubResource("RectangleShape2D_0sqsw")
+
+[node name="Time left" type="Timer" parent="."]
+wait_time = 600.0
+
+[connection signal="timeout" from="Time left" to="." method="_on_time_left_timeout"]
 
 [editable path="human_body"]

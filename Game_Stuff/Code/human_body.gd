@@ -186,6 +186,6 @@ func _on_temporary_mood_timer_timeout() -> void:
 		if randi_range(0, 1) == 0: upper_arm2.rotation_dir_thing = upper_arm2.rotation_dir_thing * -1
 		
 		
-	print("leg_mode: ", leg_mode, " leg_speed: ", max_speed)
-	print("arm_mode: ", arm_mode)
-	print(abs(global_position.x-player.global_position.x))
+	#print("leg_mode: ", leg_mode, " leg_speed: ", max_speed)
+	#print("arm_mode: ", arm_mode)
+	#print(abs(global_position.x-player.global_position.x))

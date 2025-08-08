@@ -5,8 +5,7 @@ extends Node2D
 @onready var exit = $Exit
 
 func _ready() -> void:
-	get_tree().paused = false
-
+	RenderingServer.set_default_clear_color(Color.BLACK)
 
 
 func _on_controls_pressed() -> void:

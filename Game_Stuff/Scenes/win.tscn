@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://by8jxirp012y8"]
+
+[ext_resource type="Script" uid="uid://djyrqa2xp6njj" path="res://Game_Stuff/Code/win.gd" id="1_g3u04"]
+[ext_resource type="Texture2D" uid="uid://b2aoayvuj020d" path="res://Game_Stuff/Assets/you win.png" id="1_lkksa"]
+
+[node name="win" type="Node2D"]
+script = ExtResource("1_g3u04")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lkksa")
+vframes = 8
+frame = 7
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = -349.0
+flat = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
