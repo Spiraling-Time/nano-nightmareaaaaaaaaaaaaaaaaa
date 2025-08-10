@@ -4,8 +4,11 @@ extends Node2D
 @onready var buttons = $"main buttons"
 @onready var exit = $Exit
 
+@onready var muse = $AudioStreamPlayer
+
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
+	muse.play()
 
 
 func _on_controls_pressed() -> void:
@@ -28,3 +31,7 @@ func _on_exit_pressed() -> void:
 	picture.frame = 0
 	buttons.visible = true
 	exit.visible = false
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	muse.play()

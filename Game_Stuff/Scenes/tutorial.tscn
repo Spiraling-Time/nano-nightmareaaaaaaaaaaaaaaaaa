@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://cs4hp81c0js35"]
+[gd_scene load_steps=20 format=4 uid="uid://cs4hp81c0js35"]
 
 [ext_resource type="Script" uid="uid://d27e8yy4d8wg1" path="res://Game_Stuff/Code/tutorial.gd" id="1_gs8bk"]
 [ext_resource type="Texture2D" uid="uid://dm6rmsqff5riy" path="res://Game_Stuff/Assets/Nanoboss Stadium 001.png" id="1_qqkbl"]
 [ext_resource type="PackedScene" uid="uid://ckfp17b5mt727" path="res://Game_Stuff/Scenes/player.tscn" id="2_gs8bk"]
+[ext_resource type="AudioStream" uid="uid://orqrcsii02nl" path="res://Game_Stuff/Sound/Music/futuristic-electronic-dance-beat-with-robotic-fx-370623.mp3" id="2_sutpw"]
 [ext_resource type="Texture2D" uid="uid://cgijc0wr0jvt1" path="res://Game_Stuff/Assets/icon.svg" id="4_bjmul"]
 [ext_resource type="Script" uid="uid://dseq7n2aigsxh" path="res://Game_Stuff/Code/nanowall.gd" id="5_ohqmt"]
 
@@ -53,6 +54,9 @@ size = Vector2(1064, 1705)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_gs8bk")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sutpw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
@@ -172,3 +176,5 @@ shape = SubResource("CircleShape2D_ohqmt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(3932, 812.5)
 shape = SubResource("RectangleShape2D_sutpw")
+
+[connection signal="finished" from="audio" to="." method="_on_audio_stream_player_2d_finished"]

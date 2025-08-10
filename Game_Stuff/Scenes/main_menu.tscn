@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfwdkhhiryb43"]
+[gd_scene load_steps=4 format=3 uid="uid://bfwdkhhiryb43"]
 
 [ext_resource type="Script" uid="uid://b63x4a8yg5klc" path="res://Game_Stuff/Code/main_menu.gd" id="1_da4q5"]
+[ext_resource type="AudioStream" uid="uid://2stbghj16i7v" path="res://Game_Stuff/Sound/Music/robot-glitch-loop-114300.mp3" id="2_1ujm2"]
 [ext_resource type="Texture2D" uid="uid://b5ys2o7trhm7r" path="res://Game_Stuff/Assets/Main menu.png" id="2_4v5oo"]
 
 [node name="Main_menu" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_da4q5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1ujm2")
+volume_db = -10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4v5oo")
@@ -44,6 +49,7 @@ flat = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_2d_finished"]
 [connection signal="pressed" from="main buttons/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="main buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="main buttons/Credits" to="." method="_on_credits_pressed"]

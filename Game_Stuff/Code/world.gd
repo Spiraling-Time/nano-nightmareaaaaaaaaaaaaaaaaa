@@ -10,10 +10,12 @@ var total_nanobots = 0
 @onready var timer = $"Time left"
 @onready var labeltimeleft = $"player/CanvasLayer/Time Left"
 
+@onready var mainmuse = $"main music"
+
 func _ready() -> void:
 	randomize()
 	timer.start()
-	
+	mainmuse.play()
 
 func end_game():
 	if get_tree():
@@ -34,3 +36,7 @@ func _on_time_left_timeout() -> void:
 func save_score():
 	var file = FileAccess.open(save_path_score, FileAccess.WRITE)
 	file.store_var(score)
+
+
+func _on_main_music_finished() -> void:
+	mainmuse.play()
