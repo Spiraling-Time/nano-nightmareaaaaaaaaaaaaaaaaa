@@ -48,6 +48,8 @@ var distribution: Array = []
 
 var facing# = "left"
 
+var spin_enough = 0
+
 func _ready() -> void:
 	reset_basic_position()
 	reset_basic_rotation()
@@ -130,9 +132,9 @@ func reset_basic_position():
 func basic_positions(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: bool, h: bool, i: bool, j: bool):
 	if a: torso.position = Vector2(25.0, 232.0)
 	if b: head.position = Vector2(-1.0, -297.0)
-	if c: upper_arm1.position = Vector2(-101.0, -148.0)
+	if c: upper_arm1.position = Vector2(-90.0, -128.0)
 	if d: lower_arm1.position = Vector2(-200.0, 26.0)
-	if e: upper_arm2.position = Vector2(101.0, -148.0)
+	if e: upper_arm2.position = Vector2(90.0, -128.0)
 	if f: lower_arm2.position = Vector2(200.0, 26.0)
 	if g: upper_leg1.position = Vector2(-109.0, 260.0)
 	if h: lower_leg1.position = Vector2(-94.0, 168.0)
@@ -175,7 +177,7 @@ func _on_turnaroundtimer_timeout() -> void:
 func _on_temporary_mood_timer_timeout() -> void:
 	if overall_mode == "IDLE":
 		mood_timer.wait_time = 0.1
-		if abs(global_position.x-player.global_position.x) <= 350:
+		if abs(global_position.x-player.global_position.x) <= 150:
 			leg_mode = "IDLE"
 			reset_basic_position()
 			basic_rotation(false, false, false, false, false, false, true, false, true, false)
@@ -191,11 +193,16 @@ func _on_temporary_mood_timer_timeout() -> void:
 
 		if arm_mode == "IDLE":
 			arm_mode = "ATTACK1"
-			mood_timer.wait_time = 2.0
+			spin_enough = 0
 		elif arm_mode == "ATTACK1":
-			mood_timer.wait_time = 2.0
-			if randi_range(0, 1) == 0: upper_arm1.rotation_dir_thing = upper_arm1.rotation_dir_thing * -1
-			if randi_range(0, 1) == 0: upper_arm2.rotation_dir_thing = upper_arm2.rotation_dir_thing * -1
+			spin_enough += 1
+			if spin_enough % 10 == 0:
+				if randi_range(0, 1) == 0: upper_arm1.rotation_dir_thing = upper_arm1.rotation_dir_thing * -1
+				if randi_range(0, 1) == 0: upper_arm2.rotation_dir_thing = upper_arm2.rotation_dir_thing * -1
+			if spin_enough >= randi_range(400,500): arm_mode = "REST"
+		elif arm_mode == "REST":
+			spin_enough += 1
+			if spin_enough >= 510: arm_mode = "IDLE"
 		mood_timer.start()	
 		
 	#print("leg_mode: ", leg_mode, " leg_speed: ", max_speed)

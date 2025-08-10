@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dixvi8voj5iik"]
+
+[ext_resource type="Script" uid="uid://5nxwtq1c4svm" path="res://Game_Stuff/Code/custom_nano.gd" id="1_vnfcr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnfcr"]
+radius = 19.0
+
+[node name="Custom_Nano" type="Node2D"]
+script = ExtResource("1_vnfcr")
+
+[node name="Area2D" type="Area2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vnfcr")
