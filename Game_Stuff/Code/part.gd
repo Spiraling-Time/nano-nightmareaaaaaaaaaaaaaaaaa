@@ -78,12 +78,12 @@ func spawn_bots(count: int):
 				new_bot.nano_size_y = 40
 
 			elif type_of_part == "floor":
-				new_bot.nano_size_x = 5000
-				new_bot.nano_size_y = 5000
+				new_bot.nano_size_x = 100
+				new_bot.nano_size_y = 100
 
 
 
-			new_bot.position += Vector2(randi_range(-100,100),randi_range(-100,100))
+			new_bot.position += Vector2(randi_range(randi_range(100,-100) + new_bot.offset.x + new_bot.nano_size_x/2, new_bot.offset.x - new_bot.nano_size_x/2), randi_range(randi_range(100,-100) + new_bot.offset.y + new_bot.nano_size_y/2, new_bot.offset.y - new_bot.nano_size_y/2)) #randi_range(-100,100),randi_range(-100,100)
 
 			add_child(new_bot)
 			get_owner().get_node("Area2D").global_position = new_bot.global_position

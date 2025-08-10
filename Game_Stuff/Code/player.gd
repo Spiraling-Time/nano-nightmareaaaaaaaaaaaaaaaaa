@@ -124,7 +124,7 @@ func damage(damage):
 
 func _on_turn_around_timer_timeout() -> void:
 	if world.world_type == "BOSS":
-		if abs(global_position.x-nanoboss.global_position.x) >= 100:
+		if abs(global_position.x-nanoboss.global_position.x) >= 300:
 			if global_position.x > nanoboss.global_position.x:
 				bodysprite.flip_h = true
 				sprite_close_laser.flip_h = true

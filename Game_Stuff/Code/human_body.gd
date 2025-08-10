@@ -158,7 +158,7 @@ func basic_rotation(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: boo
 
 func _on_turnaroundtimer_timeout() -> void:
 	if overall_mode == "IDLE":
-		if abs(global_position.x-player.global_position.x) >= 100:
+		if abs(global_position.x-player.global_position.x) >= 300:
 			if global_position.x > player.global_position.x:
 				if !facing == "left":
 					facing = "left"
@@ -191,7 +191,9 @@ func _on_temporary_mood_timer_timeout() -> void:
 
 		if arm_mode == "IDLE":
 			arm_mode = "ATTACK1"
+			mood_timer.wait_time = 2.0
 		elif arm_mode == "ATTACK1":
+			mood_timer.wait_time = 2.0
 			if randi_range(0, 1) == 0: upper_arm1.rotation_dir_thing = upper_arm1.rotation_dir_thing * -1
 			if randi_range(0, 1) == 0: upper_arm2.rotation_dir_thing = upper_arm2.rotation_dir_thing * -1
 		mood_timer.start()	
