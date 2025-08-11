@@ -76,7 +76,8 @@ hit_from_inside = true
 target_position = Vector2(400, 0)
 
 [node name="near_wall2" type="RayCast2D" parent="body/torso"]
-target_position = Vector2(-400, 0)
+target_position = Vector2(-945, 0)
+collision_mask = 128
 
 [node name="Area2D" type="Area2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -88,16 +89,12 @@ shape = SubResource("CircleShape2D_pk788")
 wait_time = 1.5
 one_shot = true
 
-[node name="turnaroundtimer" type="Timer" parent="."]
-wait_time = 0.1
-
 [node name="mood timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
 [node name="respawn nanobots" type="Timer" parent="."]
 
-[connection signal="timeout" from="turnaroundtimer" to="." method="_on_turnaroundtimer_timeout"]
 [connection signal="timeout" from="mood timer" to="." method="_on_temporary_mood_timer_timeout"]
 [connection signal="timeout" from="respawn nanobots" to="body/torso" method="_on_respawn_nanobots_timeout"]
 [connection signal="timeout" from="respawn nanobots" to="body/torso/head" method="_on_respawn_nanobots_timeout"]

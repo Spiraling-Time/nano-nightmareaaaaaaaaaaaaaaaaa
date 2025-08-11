@@ -18,7 +18,6 @@ extends Node2D
 @onready var near_wall2 = $body/torso/near_wall2
 
 @onready var leg_height_resetter = $Reset_height
-@onready var turn_around_timer = $turnaroundtimer
 
 @onready var player = $"../player"
 
@@ -50,9 +49,8 @@ var facing# = "left"
 
 var spin_enough = 0
 
-var attack_enough = 0
+var attack_enough = -5
 
-var prev_pos
 
 @export var custom = preload("res://Game_Stuff/Scenes/custom_nano.tscn")
 
@@ -60,19 +58,34 @@ var prev_pos
 func _ready() -> void:
 	reset_basic_position()
 	reset_basic_rotation()
-	turn_around_timer.start()
-	turn_around_timer.timeout
 	mood_timer.start()
 	spawn_timer.start()
 	mood_timer.timeout
 	max_speed = 10
 
 func _physics_process(delta: float) -> void:
-	prev_pos = position
+
+	#print(speed)
 	#print(rotation_degrees)
-	if overall_mode == "IDLE":		
+	if overall_mode == "IDLE":
+		if abs(global_position.x-player.global_position.x) >= 400:
+			if global_position.x > player.global_position.x:
+				if !facing == "left":
+					facing = "left"
+					scale.x = 1
+					speed = max_speed*-1
+					basic_rotation(false, false, false, false, false, false, true, false, true, false)
+			elif !facing == "right":
+				facing = "right"
+				scale.x = -1
+				speed = max_speed
+				basic_rotation(false, false, false, false, false, false, true, false, true, false)
+
 		#print("nano: ", global_position.x, " player: ", $"../player".global_position.x)
 		if leg_mode == "WALK":
+			if speed == 0:
+				if facing == "left": speed = max_speed*-1
+				elif facing == "right": speed = max_speed
 			if leg_height_resetter.is_stopped():
 				reset_basic_position()
 				leg_height_resetter.start()
@@ -130,11 +143,7 @@ func _physics_process(delta: float) -> void:
 			fall_speed = 1
 		if position.y >= lowest: position.y = lowest
 	
-	if position.x <= -4720.0 or position.x >= 4720.0:
-		position.x = prev_pos.x
-		leg_mode = "IDLE"
-		max_speed = 0
-		print("teled")
+
 
 
 
@@ -171,22 +180,8 @@ func basic_rotation(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: boo
 	if j: lower_leg2.rotation = 0.0
 
 
-func _on_turnaroundtimer_timeout() -> void:
-	if overall_mode == "IDLE":
-		if abs(global_position.x-player.global_position.x) >= 400:
-			if global_position.x > player.global_position.x:
-				if !facing == "left":
-					facing = "left"
-					scale.x = 1
-					speed = max_speed*-1
-					basic_rotation(false, false, false, false, false, false, true, false, true, false)
-			elif !facing == "right":
-				facing = "right"
-				scale.x = -1
-				speed = max_speed
-				basic_rotation(false, false, false, false, false, false, true, false, true, false)
-			#print(facing)
 
+	
 func _on_temporary_mood_timer_timeout() -> void:
 	if custom:
 		attack_enough += 1
@@ -223,7 +218,7 @@ func _on_temporary_mood_timer_timeout() -> void:
 				
 	if overall_mode == "IDLE":
 		mood_timer.wait_time = 0.1
-		if abs(global_position.x-player.global_position.x) <= 150:
+		if near_wall2.is_colliding():
 			if max_speed > 0: max_speed = 0
 			else:
 				leg_mode = "IDLE"
