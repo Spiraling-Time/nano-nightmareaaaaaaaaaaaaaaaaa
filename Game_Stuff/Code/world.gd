@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	labeltimeleft.text = "%d" % timer.time_left
 	if total_nanobots >= 1600: end_game()
 	elif total_nanobots >= 1400: if !alert.playing: alert.play()
-	else: if alert.playing: alert.stop()
+
 
 
 func _on_time_left_timeout() -> void:
