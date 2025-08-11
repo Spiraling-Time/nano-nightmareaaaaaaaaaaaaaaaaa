@@ -11,5 +11,5 @@ func _ready() -> void:
 
 func _on_respawn_nanobots_timeout() -> void:
 	if max_number_of_bots - number_of_bots >= 0:
-		if abs(the_parent.global_position.x-the_parent.player.global_position.x) >= 750: spawn_bots(50)
-		else: spawn_bots(randi_range(2,3))
+		if abs(the_parent.global_position.x-the_parent.player.global_position.x) >= 750 or abs(the_parent.global_position.x-the_parent.player.global_position.x) <= 150: spawn_bots(50)
+		else: spawn_bots(5)
