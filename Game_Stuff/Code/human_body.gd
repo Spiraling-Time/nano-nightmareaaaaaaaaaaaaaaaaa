@@ -164,6 +164,8 @@ func basic_rotation(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: boo
 
 
 func _on_turnaroundtimer_timeout() -> void:
+	if position.x <= -4520.0 or position.x >= 4520.0:
+		position.x = 0
 	if overall_mode == "IDLE":
 		if abs(global_position.x-player.global_position.x) >= 400:
 			if global_position.x > player.global_position.x:
@@ -224,9 +226,6 @@ func _on_temporary_mood_timer_timeout() -> void:
 		else:
 			max_speed = 10
 			leg_mode = "WALK"
-	
-
-
 
 		if arm_mode == "IDLE":
 			arm_mode = "ATTACK1"
