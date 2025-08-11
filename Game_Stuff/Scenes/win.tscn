@@ -9,7 +9,6 @@ script = ExtResource("1_g3u04")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_lkksa")
 vframes = 8
-frame = 7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -21,6 +20,7 @@ offset_left = -960.0
 offset_top = -540.0
 offset_right = 960.0
 offset_bottom = -349.0
+disabled = true
 flat = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

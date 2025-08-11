@@ -186,7 +186,7 @@ func basic_rotation(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: boo
 func _on_temporary_mood_timer_timeout() -> void:
 	if custom:
 		attack_enough += 1
-		if player.position.y <= 480.0 or player.position.y >= 1456.0 or player.position.x <= -4544.0 or player.position.x >= 4544.0 or abs(global_position.x-player.global_position.x) <= 150: attack_enough = attack_enough * 2
+		if attack_enough > 0: if player.position.y <= 480.0 or player.position.y >= 1456.0 or player.position.x <= -4544.0 or player.position.x >= 4544.0 or abs(global_position.x-player.global_position.x) <= 150: attack_enough = attack_enough * 2
 		if attack_enough >= randi_range(10,30):
 			if torso.number_of_bots >= randi_range(70, 150) or (player.position.y <= 480.0 and torso.number_of_bots >= 50):
 				var count = 0

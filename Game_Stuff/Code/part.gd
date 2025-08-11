@@ -25,6 +25,7 @@ var rotation_dir_thing = 6.0
 
 var own_checker
 
+
 var custom_active: bool = false
 #ARMS {
 #var up_down_swing_attack = "Up"
