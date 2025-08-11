@@ -182,8 +182,9 @@ func _on_turnaroundtimer_timeout() -> void:
 func _on_temporary_mood_timer_timeout() -> void:
 	if custom:
 		attack_enough += 1
-		if attack_enough >= randi_range(10,50):
-			if torso.number_of_bots >= randi_range(70, 150):
+		if player.position.y <= 480.0 or player.position.y >= 1456.0: attack_enough = attack_enough * 2
+		if attack_enough >= randi_range(10,30):
+			if torso.number_of_bots >= randi_range(70, 150) or (player.position.y <= 480.0 and torso.number_of_bots >= 50):
 				var count = 0
 				for i in torso.get_children():
 					if i is Nanobot:
@@ -200,7 +201,9 @@ func _on_temporary_mood_timer_timeout() -> void:
 				new_custom.custom_offset = Vector2.ZERO
 
 				new_custom.custom_speed = 50
-				var true_dir_thing = Vector2(randi_range(1,1), randi_range(1,1))
+				var true_dir_thing
+				if player.position.y <= 480.0 or player.position.y >= 1456.0: true_dir_thing = Vector2(0, 1)
+				else: true_dir_thing = Vector2(randi_range(1,-1), randi_range(1,-1))
 				if true_dir_thing == Vector2(0,0): true_dir_thing = Vector2(0,1)
 				new_custom.custom_dir = true_dir_thing
 				new_custom.position = player.position + Vector2(true_dir_thing.x*200, true_dir_thing.y * -200)
