@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckfp17b5mt727"]
+[gd_scene load_steps=16 format=3 uid="uid://ckfp17b5mt727"]
 
 [ext_resource type="Script" uid="uid://dbgxrk16jdwdg" path="res://Game_Stuff/Code/player.gd" id="1_xknox"]
 [ext_resource type="Texture2D" uid="uid://dvbll7albmwcr" path="res://Game_Stuff/Assets/Robo_guy/body sprite sheet.png" id="2_vnf7s"]
 [ext_resource type="Texture2D" uid="uid://gmcwac3wu6p5" path="res://Game_Stuff/Assets/Robo_guy/Nano Nightmare Fly sprite sheet.png" id="3_vnf7s"]
-[ext_resource type="Texture2D" uid="uid://cchrvxe3ofw6b" path="res://Game_Stuff/Assets/Robo_guy/Close Laser Nano Nightmare 001.png" id="3_w1uhh"]
+[ext_resource type="Texture2D" uid="uid://b77cisf7atden" path="res://Game_Stuff/Assets/Robo_guy/Nano Nightmare Player.png" id="3_w1uhh"]
 [ext_resource type="Texture2D" uid="uid://d0smniu7l6aaa" path="res://Game_Stuff/Assets/Robo_guy/UI Sprite Sheet.png" id="4_otuxt"]
 [ext_resource type="FontFile" uid="uid://cpe2y3dsvf8jo" path="res://Game_Stuff/Font/QuirkyRobot.ttf" id="6_w1uhh"]
 
@@ -56,6 +56,9 @@ size = Vector2(56, 33)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kinf7"]
 size = Vector2(58, 92)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aou3d"]
+size = Vector2(58, 180)
+
 [sub_resource type="LabelSettings" id="LabelSettings_kinf7"]
 font = ExtResource("6_w1uhh")
 font_size = 40
@@ -81,6 +84,7 @@ vframes = 3
 
 [node name="close_laser" type="Sprite2D" parent="."]
 visible = false
+z_index = 1
 texture = ExtResource("3_w1uhh")
 
 [node name="fire" type="Sprite2D" parent="."]
@@ -112,17 +116,9 @@ shape = SubResource("RectangleShape2D_kinf7")
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D3"]
-position = Vector2(29, -11)
-polygon = PackedVector2Array(0, 0, 197, -49, 197, 72, 0, 24)
-
-[node name="Area2D4" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D4"]
-position = Vector2(0, -11)
-polygon = PackedVector2Array(0, 0, -197, -49, -197, 72, 0, 24)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(0, -147)
+shape = SubResource("RectangleShape2D_aou3d")
 
 [node name="turn_around_timer" type="Timer" parent="."]
 autostart = true

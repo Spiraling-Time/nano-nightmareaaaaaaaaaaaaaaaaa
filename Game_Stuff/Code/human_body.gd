@@ -165,7 +165,7 @@ func basic_rotation(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: boo
 
 func _on_turnaroundtimer_timeout() -> void:
 	if overall_mode == "IDLE":
-		if abs(global_position.x-player.global_position.x) >= 300:
+		if abs(global_position.x-player.global_position.x) >= 400:
 			if global_position.x > player.global_position.x:
 				if !facing == "left":
 					facing = "left"

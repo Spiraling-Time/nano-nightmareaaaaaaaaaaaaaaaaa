@@ -20,7 +20,6 @@ var ammo = 0
 
 var shooting:bool = false
 
-@export var laser = preload("res://Game_Stuff/Scenes/laser.tscn")
 
 
 
@@ -38,8 +37,8 @@ var shooting:bool = false
 @onready var ammo_ui = $"Ammo and stuff/Sprite2D"
 @onready var labeltotalnano = $"Ammo and stuff/TotalNANOS"
 @onready var sprite_close_laser = $close_laser
-@onready var right_area_close_laser = $Area2D3
-@onready var left_area_close_laser = $Area2D4
+@onready var area_close_laser = $Area2D3
+
 
 
 
@@ -50,16 +49,11 @@ func _physics_process(delta: float) -> void:
 	else: labeltotalnano.modulate = Color.WHITE
 	
 	if shooting:
-		if !bodysprite.flip_h:
-			for bodies in right_area_close_laser.get_overlapping_bodies():
-				if bodies != self and bodies.has_method("delete_self"):
-					bodies.get_parent().number_of_bots -= 1
-					bodies.delete_self()
-		else:
-			for bodies in left_area_close_laser.get_overlapping_bodies():
-				if bodies != self and bodies.has_method("delete_self"):
-					bodies.get_parent().number_of_bots -= 1
-					bodies.delete_self()
+		for bodies in area_close_laser.get_overlapping_bodies():
+			if bodies != self and bodies.has_method("delete_self"):
+				bodies.get_parent().number_of_bots -= 1
+				bodies.delete_self()
+
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
@@ -106,12 +100,6 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		if ammo > 0:
 			shooting = true
 			sprite_close_laser.visible = true
-			var new_laser = laser.instantiate()
-			new_laser.rotation = rotation
-			if bodysprite.flip_h: new_laser.position = position + Vector2(-52.0, -42.0).rotated(new_laser.rotation)
-			else: new_laser.position = position + Vector2(52.0, -42.0).rotated(new_laser.rotation)
-			new_laser.origin_point = new_laser.position
-			get_tree().current_scene.add_child(new_laser)
 			ammo -= 1
 			for i in 5: if get_tree(): await get_tree().process_frame
 			sprite_close_laser.visible = false
