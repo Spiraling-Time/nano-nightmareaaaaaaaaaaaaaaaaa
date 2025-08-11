@@ -52,6 +52,8 @@ var spin_enough = 0
 
 var attack_enough = 0
 
+var prev_pos
+
 @export var custom = preload("res://Game_Stuff/Scenes/custom_nano.tscn")
 
 
@@ -66,6 +68,7 @@ func _ready() -> void:
 	max_speed = 10
 
 func _physics_process(delta: float) -> void:
+	prev_pos = position
 	#print(rotation_degrees)
 	if overall_mode == "IDLE":		
 		#print("nano: ", global_position.x, " player: ", $"../player".global_position.x)
@@ -127,6 +130,11 @@ func _physics_process(delta: float) -> void:
 			fall_speed = 1
 		if position.y >= lowest: position.y = lowest
 	
+	if position.x <= -4720.0 or position.x >= 4720.0:
+		position.x = prev_pos.x
+		leg_mode = "IDLE"
+		max_speed = 0
+		print("teled")
 
 
 
@@ -164,8 +172,6 @@ func basic_rotation(a: bool, b: bool, c: bool, d: bool, e: bool, f: bool, g: boo
 
 
 func _on_turnaroundtimer_timeout() -> void:
-	if position.x <= -4520.0 or position.x >= 4520.0:
-		position.x = 0
 	if overall_mode == "IDLE":
 		if abs(global_position.x-player.global_position.x) >= 400:
 			if global_position.x > player.global_position.x:
@@ -218,14 +224,16 @@ func _on_temporary_mood_timer_timeout() -> void:
 	if overall_mode == "IDLE":
 		mood_timer.wait_time = 0.1
 		if abs(global_position.x-player.global_position.x) <= 150:
-			leg_mode = "IDLE"
-			reset_basic_position()
-			basic_rotation(false, false, false, false, false, false, true, false, true, false)
+			if max_speed > 0: max_speed = 0
+			else:
+				leg_mode = "IDLE"
+				reset_basic_position()
+				basic_rotation(false, false, false, false, false, false, true, false, true, false)
 		elif abs(global_position.x-player.global_position.x) <= 650:
 			max_speed = 5
 			leg_mode = "WALK"
 		else:
-			max_speed = 10
+			max_speed = 8
 			leg_mode = "WALK"
 
 		if arm_mode == "IDLE":
@@ -241,7 +249,6 @@ func _on_temporary_mood_timer_timeout() -> void:
 			spin_enough += 1
 			if spin_enough >= 510: arm_mode = "IDLE"
 		mood_timer.start()	
-
 
 	
 	#print("leg_mode: ", leg_mode, " leg_speed: ", max_speed)

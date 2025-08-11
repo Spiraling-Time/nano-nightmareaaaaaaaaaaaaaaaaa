@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ce4ephghplnik" path="res://Game_Stuff/Code/lose.gd" id="1_7ehtm"]
 [ext_resource type="Texture2D" uid="uid://628euufe4ejf" path="res://Game_Stuff/Assets/you lose.png" id="2_myy08"]
-[ext_resource type="FontFile" uid="uid://cpe2y3dsvf8jo" path="res://Game_Stuff/Font/QuirkyRobot.ttf" id="3_myy08"]
+[ext_resource type="FontFile" uid="uid://cc6l3eg2fft6k" path="res://Game_Stuff/Font/Roboto-Medium.ttf" id="3_myy08"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bqd6r"]
 font = ExtResource("3_myy08")
-font_size = 50
+font_size = 30
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Lose" type="Node2D"]
@@ -26,9 +26,10 @@ flat = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = -497.0
-offset_top = -254.0
+offset_top = -258.0
 offset_right = -420.0
-offset_bottom = -204.0
+offset_bottom = -208.0
+text = "123"
 label_settings = SubResource("LabelSettings_bqd6r")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

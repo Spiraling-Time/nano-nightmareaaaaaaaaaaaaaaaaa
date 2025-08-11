@@ -101,7 +101,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			shooting = true
 			sprite_close_laser.visible = true
 			ammo -= 1
-			for i in 5: if get_tree(): await get_tree().process_frame
+			for i in 6: if get_tree(): await get_tree().process_frame
 			sprite_close_laser.visible = false
 			shooting = false
 		
