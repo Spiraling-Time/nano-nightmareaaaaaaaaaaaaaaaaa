@@ -17,7 +17,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if custom_active:
 		if type_of_movement == "Steady":
-			if position.y <= 1720: position += custom_speed * custom_dir
+			if position.y <= 1720.0 and position.y >= -1640.0 and position.x >= -4848.0 and position.x <= 4848.0: position += custom_speed * custom_dir
 
 
 func _on_timer_timeout() -> void:

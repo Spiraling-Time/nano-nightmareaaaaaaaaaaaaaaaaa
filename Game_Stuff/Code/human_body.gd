@@ -204,7 +204,7 @@ func _on_temporary_mood_timer_timeout() -> void:
 
 				new_custom.custom_speed = 50
 				var true_dir_thing
-				if player.position.y <= 480.0 or player.position.y >= 1456.0 or player.position.x <= -4544.0 or player.position.x >= 4544.0: true_dir_thing = Vector2(0, 1)
+				if player.position.y <= 480.0 or player.position.x <= -4544.0 or player.position.x >= 4544.0: true_dir_thing = Vector2(0, 1)
 				else: true_dir_thing = Vector2(randi_range(1,-1), randi_range(1,-1))
 				if true_dir_thing == Vector2(0,0): true_dir_thing = Vector2(0,1)
 				new_custom.custom_dir = true_dir_thing
