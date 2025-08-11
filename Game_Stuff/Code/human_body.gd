@@ -14,7 +14,6 @@ extends Node2D
 @onready var standing1 = $body/torso/upper_leg1/lower_leg1/standing
 @onready var standing2 = $body/torso/upper_leg2/lower_leg2/standing
 
-@onready var near_wall1 = $body/torso/near_wall1
 @onready var near_wall2 = $body/torso/near_wall2
 
 @onready var leg_height_resetter = $Reset_height
@@ -51,6 +50,7 @@ var spin_enough = 0
 
 var attack_enough = -5
 
+var prev_scale_x
 
 @export var custom = preload("res://Game_Stuff/Scenes/custom_nano.tscn")
 
@@ -64,11 +64,11 @@ func _ready() -> void:
 	max_speed = 10
 
 func _physics_process(delta: float) -> void:
-
+	prev_scale_x= scale.x
 	#print(speed)
 	#print(rotation_degrees)
 	if overall_mode == "IDLE":
-		if abs(global_position.x-player.global_position.x) >= 400:
+		if abs(global_position.x-player.global_position.x) >= 200:
 			if global_position.x > player.global_position.x:
 				if !facing == "left":
 					facing = "left"
@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 				basic_rotation(false, false, false, false, false, false, true, false, true, false)
 
 		#print("nano: ", global_position.x, " player: ", $"../player".global_position.x)
-		if leg_mode == "WALK":
+		if leg_mode == "WALK" and prev_scale_x == scale.x:
 			if speed == 0:
 				if facing == "left": speed = max_speed*-1
 				elif facing == "right": speed = max_speed
@@ -90,6 +90,7 @@ func _physics_process(delta: float) -> void:
 				reset_basic_position()
 				leg_height_resetter.start()
 				#print("restarting")
+			near_wall2.force_raycast_update()
 			if !near_wall2.is_colliding():
 				if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: position.x += delta*60*speed*(upper_leg1.max_number_of_bots / upper_leg1.number_of_bots)*(upper_leg2.max_number_of_bots / upper_leg2.number_of_bots)
 				else: position.x += speed * delta * 60
