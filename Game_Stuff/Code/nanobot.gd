@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Nanobot
 #var nano_type
 var nano_home
 var nano_size_x
@@ -90,9 +90,11 @@ func start():
 	
 	
 	
-	timer.start()
+	
 	alive = true
-
+	if get_tree():
+		await  get_tree().process_frame
+		if timer: timer.start()
 	
 func _physics_process(delta: float) -> void:
 	if alive:

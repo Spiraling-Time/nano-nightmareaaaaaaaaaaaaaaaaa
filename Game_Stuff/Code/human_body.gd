@@ -50,6 +50,11 @@ var facing# = "left"
 
 var spin_enough = 0
 
+var attack_enough = 0
+
+@export var custom = preload("res://Game_Stuff/Scenes/custom_nano.tscn")
+
+
 func _ready() -> void:
 	reset_basic_position()
 	reset_basic_rotation()
@@ -175,6 +180,35 @@ func _on_turnaroundtimer_timeout() -> void:
 			#print(facing)
 
 func _on_temporary_mood_timer_timeout() -> void:
+	if custom:
+		attack_enough += 1
+		if attack_enough >= randi_range(10,50):
+			if torso.number_of_bots >= randi_range(70, 150):
+				var count = 0
+				for i in torso.get_children():
+					if i is Nanobot:
+						torso.number_of_bots -= 1
+						i.delete_self()
+						count += 1
+						#print(count)
+						if count >= 50: break
+				var new_custom = custom.instantiate()
+				new_custom.type_of_movement = "Steady"
+				new_custom.max_number_of_bots = 50
+
+
+				new_custom.custom_offset = Vector2.ZERO
+
+				new_custom.custom_speed = 50
+				var true_dir_thing = Vector2(randi_range(1,1), randi_range(1,1))
+				if true_dir_thing == Vector2(0,0): true_dir_thing = Vector2(0,1)
+				new_custom.custom_dir = true_dir_thing
+				new_custom.position = player.position + Vector2(true_dir_thing.x*200, true_dir_thing.y * -200)
+				new_custom.custom_size_x = 100+abs(true_dir_thing.y)*100
+				new_custom.custom_size_y = 100+abs(true_dir_thing.x)*100
+				get_tree().current_scene.add_child(new_custom)
+				attack_enough = 0
+				
 	if overall_mode == "IDLE":
 		mood_timer.wait_time = 0.1
 		if abs(global_position.x-player.global_position.x) <= 150:
@@ -204,7 +238,9 @@ func _on_temporary_mood_timer_timeout() -> void:
 			spin_enough += 1
 			if spin_enough >= 510: arm_mode = "IDLE"
 		mood_timer.start()	
-		
+
+
+	
 	#print("leg_mode: ", leg_mode, " leg_speed: ", max_speed)
 	#print("arm_mode: ", arm_mode)
 	#print(abs(global_position.x-player.global_position.x))

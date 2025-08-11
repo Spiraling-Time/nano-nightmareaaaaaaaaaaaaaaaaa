@@ -4,7 +4,6 @@ extends Node2D
 
 @onready var world = get_tree().current_scene
 
-
 var custom_size_x
 var custom_size_y
 
@@ -15,6 +14,7 @@ var custom_dir
 
 var the_parent
 
+var type_of_movement
 
 
 var type_of_part# = null
@@ -25,6 +25,7 @@ var rotation_dir_thing = 6.0
 
 var own_checker
 
+var custom_active: bool = false
 #ARMS {
 #var up_down_swing_attack = "Up"
 #}
@@ -97,13 +98,17 @@ func spawn_bots(count: int):
 
 
 			new_bot.position += Vector2(randi_range(randi_range(100,-100) + new_bot.offset.x + new_bot.nano_size_x/2, new_bot.offset.x - new_bot.nano_size_x/2), randi_range(randi_range(100,-100) + new_bot.offset.y + new_bot.nano_size_y/2, new_bot.offset.y - new_bot.nano_size_y/2)) #randi_range(-100,100),randi_range(-100,100)
-
 			add_child(new_bot)
-			if type_of_part == "custom": own_checker.global_position = new_bot.global_position
-			else: get_owner().get_node("Area2D").global_position = new_bot.global_position
+			var area_checker
+			if type_of_part == "custom":
+				own_checker.global_position = new_bot.global_position
+				area_checker = own_checker
+			else:
+				get_owner().get_node("Area2D").global_position = new_bot.global_position
+				area_checker = get_owner().get_node("Area2D")
 			#print(get_owner().get_node("Area2D").global_position)
 			world.total_nanobots += 1
-			for bodies in get_owner().get_node("Area2D").get_overlapping_bodies():
+			for bodies in area_checker.get_overlapping_bodies():
 				if bodies.has_method("damage"):
 					number_of_bots -= 1
 					world.total_nanobots -= 1
