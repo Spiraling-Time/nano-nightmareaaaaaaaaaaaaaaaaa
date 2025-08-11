@@ -29,7 +29,6 @@ offset_left = -497.0
 offset_top = -258.0
 offset_right = -420.0
 offset_bottom = -208.0
-text = "123"
 label_settings = SubResource("LabelSettings_bqd6r")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -11,8 +11,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_v1ae1"]
 font = ExtResource("6_v1ae1")
-font_size = 60
-outline_size = 5
+font_size = 70
+outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0sqsw"]
@@ -76,7 +76,6 @@ offset_top = 10.0
 offset_right = 36.0
 offset_bottom = 80.0
 grow_horizontal = 2
-text = "234"
 label_settings = SubResource("LabelSettings_v1ae1")
 
 [node name="human_body" parent="." instance=ExtResource("2_th3ow")]
