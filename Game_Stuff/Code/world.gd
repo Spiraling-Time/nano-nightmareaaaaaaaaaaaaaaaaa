@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func end_game():
 	if get_tree():
-		score = 600-timer.time_left
+		score = 300-timer.time_left
 		save_score()
 		get_tree().change_scene_to_file("res://Game_Stuff/Scenes/lose.tscn")
 
