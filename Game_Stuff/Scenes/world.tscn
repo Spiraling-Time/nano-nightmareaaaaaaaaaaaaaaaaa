@@ -107,7 +107,7 @@ position = Vector2(0, 1736)
 shape = SubResource("RectangleShape2D_0sqsw")
 
 [node name="Time left" type="Timer" parent="."]
-wait_time = 600.0
+wait_time = 300.0
 
 [connection signal="finished" from="main music" to="." method="_on_main_music_finished"]
 [connection signal="timeout" from="Time left" to="." method="_on_time_left_timeout"]
