@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dxerlijo04el8"]
+[gd_scene load_steps=15 format=4 uid="uid://dxerlijo04el8"]
 
 [ext_resource type="Texture2D" uid="uid://cgijc0wr0jvt1" path="res://Game_Stuff/Assets/icon.svg" id="1_oeug3"]
 [ext_resource type="Script" uid="uid://cndfe8p3pnnfc" path="res://Game_Stuff/Code/world.gd" id="1_yy1qi"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ckfp17b5mt727" path="res://Game_Stuff/Scenes/player.tscn" id="2_yp3uo"]
 [ext_resource type="AudioStream" uid="uid://bma05r1mwbv48" path="res://Game_Stuff/Sound/Sound Effects/alert-33762.mp3" id="3_v1ae1"]
 [ext_resource type="FontFile" uid="uid://cpe2y3dsvf8jo" path="res://Game_Stuff/Font/QuirkyRobot.ttf" id="4_cqm8y"]
-[ext_resource type="PackedScene" uid="uid://dixvi8voj5iik" path="res://Game_Stuff/Scenes/custom_nano.tscn" id="9_7l4kh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v1ae1"]
 font = ExtResource("4_cqm8y")
@@ -115,9 +114,6 @@ shape = SubResource("RectangleShape2D_0sqsw")
 
 [node name="Time left" type="Timer" parent="."]
 wait_time = 300.0
-
-[node name="Custom_Nano" parent="." instance=ExtResource("9_7l4kh")]
-position = Vector2(-4048, -1640)
 
 [connection signal="finished" from="main music" to="." method="_on_main_music_finished"]
 [connection signal="timeout" from="Time left" to="." method="_on_time_left_timeout"]
