@@ -90,7 +90,9 @@ func _physics_process(delta: float) -> void:
 				reset_basic_position()
 				leg_height_resetter.start()
 				#print("restarting")
-			if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: velocity.x += speed * delta * 600*(upper_leg1.max_number_of_bots / upper_leg1.number_of_bots)*(upper_leg2.max_number_of_bots / upper_leg2.number_of_bots)
+			if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: velocity.x += (speed * delta * 6000000 * clamp(1, upper_leg1.number_of_bots / upper_leg1.max_number_of_bots, 0.01)*clamp(1, upper_leg2.number_of_bots / upper_leg2.max_number_of_bots, 0.01))
+			else: velocity.x = 0
+			if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: print(speed * delta * 6000000 * clamp(1, upper_leg1.number_of_bots / upper_leg1.max_number_of_bots, 0.01)*clamp(1, upper_leg2.number_of_bots / upper_leg2.max_number_of_bots, 0.01))
 			if velocity.x > 1000: velocity.x = 1000
 			elif velocity.x < -1000: velocity.x = -1000
 			basic_positions(false, false, false, false, false, false, false, true, false, true)
