@@ -54,7 +54,6 @@ var prev_scale_x
 
 @export var custom = preload("res://Game_Stuff/Scenes/custom_nano.tscn")
 
-
 func _ready() -> void:
 	reset_basic_position()
 	reset_basic_rotation()
