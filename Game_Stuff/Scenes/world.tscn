@@ -79,7 +79,7 @@ grow_horizontal = 2
 label_settings = SubResource("LabelSettings_v1ae1")
 
 [node name="human_body" parent="." instance=ExtResource("2_th3ow")]
-position = Vector2(904, -1392)
+position = Vector2(1408, -1384)
 
 [node name="Sprite2D" type="Sprite2D" parent="human_body/body/torso" index="0"]
 visible = false

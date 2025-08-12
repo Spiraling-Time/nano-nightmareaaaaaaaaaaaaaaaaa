@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @onready var torso = $body/torso
 @onready var head = $body/torso/head
@@ -48,7 +48,7 @@ var facing# = "left"
 
 var spin_enough = 0
 
-var attack_enough = -5
+var attack_enough = -100
 
 var prev_scale_x
 
@@ -90,13 +90,9 @@ func _physics_process(delta: float) -> void:
 				reset_basic_position()
 				leg_height_resetter.start()
 				#print("restarting")
-			near_wall2.force_raycast_update()
-			if !near_wall2.is_colliding():
-				if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: position.x += delta*60*speed*(upper_leg1.max_number_of_bots / upper_leg1.number_of_bots)*(upper_leg2.max_number_of_bots / upper_leg2.number_of_bots)
-				else: position.x += speed * delta * 60
-			if speed < 50 and speed > -50: speed = speed*1.01
-			if speed > 50: speed = 50
-			elif speed < -50: speed = -50
+			if upper_leg1.number_of_bots >= 1 and upper_leg2.number_of_bots >= 1: velocity.x += speed * delta * 600*(upper_leg1.max_number_of_bots / upper_leg1.number_of_bots)*(upper_leg2.max_number_of_bots / upper_leg2.number_of_bots)
+			if velocity.x > 1000: velocity.x = 1000
+			elif velocity.x < -1000: velocity.x = -1000
 			basic_positions(false, false, false, false, false, false, false, true, false, true)
 			if leg1_movement == "Forward":
 				upper_leg1.position.y += 1
@@ -138,12 +134,12 @@ func _physics_process(delta: float) -> void:
 		standing1.force_raycast_update()
 		standing2.force_raycast_update()
 		if !standing1.is_colliding() and !standing2.is_colliding():
-			position.y += fall_speed * delta *60
+			velocity.y = fall_speed * delta *600
 			fall_speed = fall_speed*1.1			
 		else:
 			fall_speed = 1
 		if position.y >= lowest: position.y = lowest
-	
+		move_and_slide()
 
 
 
@@ -219,7 +215,7 @@ func _on_temporary_mood_timer_timeout() -> void:
 				
 	if overall_mode == "IDLE":
 		mood_timer.wait_time = 0.1
-		if near_wall2.is_colliding():
+		if (facing == "right" and position.x >= 4480.0) or (facing == "left" and position.x <= -4480.0):
 			if max_speed > 0: max_speed = 0
 			else:
 				leg_mode = "IDLE"

@@ -11,6 +11,5 @@ func _ready() -> void:
 
 func _on_respawn_nanobots_timeout() -> void:
 	if max_number_of_bots - number_of_bots >= 0:
-		the_parent.near_wall2.force_raycast_update()
-		if abs(the_parent.global_position.x-the_parent.player.global_position.x) >= 750 or the_parent.near_wall2.is_colliding(): spawn_bots(50)
+		if abs(the_parent.global_position.x-the_parent.player.global_position.x) >= 750 or the_parent.position.x >= 4480.0 or the_parent.position.x <= -4480.0: spawn_bots(50)
 		else: spawn_bots(5)
