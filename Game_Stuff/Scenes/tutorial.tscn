@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d27e8yy4d8wg1" path="res://Game_Stuff/Code/tutorial.gd" id="1_gs8bk"]
 [ext_resource type="PackedScene" uid="uid://ckfp17b5mt727" path="res://Game_Stuff/Scenes/player.tscn" id="2_gs8bk"]
 [ext_resource type="AudioStream" uid="uid://orqrcsii02nl" path="res://Game_Stuff/Sound/Music/futuristic-electronic-dance-beat-with-robotic-fx-370623.mp3" id="2_sutpw"]
-[ext_resource type="Texture2D" uid="uid://25kv3tbtj8co" path="res://Game_Stuff/Assets/Nanoboss Stadium (1).png" id="3_sutpw"]
+[ext_resource type="Texture2D" uid="uid://cikiufo6fw6cv" path="res://Game_Stuff/Assets/Nanoboss Stadium 001.png" id="3_sutpw"]
 [ext_resource type="Texture2D" uid="uid://cgijc0wr0jvt1" path="res://Game_Stuff/Assets/icon.svg" id="4_bjmul"]
 [ext_resource type="Script" uid="uid://dseq7n2aigsxh" path="res://Game_Stuff/Code/nanowall.gd" id="5_ohqmt"]
 
